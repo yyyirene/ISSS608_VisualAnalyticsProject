@@ -1,3 +1,84 @@
 ---
-title: "ISSS608_VisualAnalyticsProject"
+title: "EchoScope™ — Discovering Music Influence Through Visual Analytics"
+format:
+  html:
+    theme: flatly
+    toc: true
+    page-layout: full
+    css: styles.css
+    code-fold: true
+bibliography: []
 ---
+
+```{=html}
+<div class="hero-banner">
+  <h1>EchoScope™</h1>
+  <p><em>Discovering music influence and rising stars through interactive visual analytics</em></p>
+</div>
+```
+## 🎧 Welcome to EchoScope™
+
+**EchoScope™** is a web-based visual analytics prototype built for the ISSS608 Visual Analytics course project. It uses VAST 2025 Mini-Challenge 1 data to explore the artistic evolution of Sailor Shift and the influence of Oceanus Folk on global music.
+
+Our dashboard simulates a modern SaaS platform, offering interactive graphs and dashboards similar in experience to Apple Music, allowing music analysts, A&R managers, and cultural researchers to explore trends and talent.
+
+------------------------------------------------------------------------
+
+## 🔍 Project Goals
+
+-   Trace influence paths of iconic artists
+-   Analyze the genre evolution of Oceanus Folk
+-   Predict rising stars based on data and influence scores
+-   Demonstrate how network science and visual analytics can support cultural insight
+
+------------------------------------------------------------------------
+
+## 📂 Case Data Sample
+
+-   17,000+ nodes: artists, genres, songs, producers
+-   37,000+ edges: performer links, stylistic influence, collaborations
+-   Key attributes: `notoriety_date`, `PerformerOf`, `InStyleOf`, `genre`, `notable`
+
+------------------------------------------------------------------------
+
+## 🧩 Functional Modules
+
+| Module Name        | Functionality                                               |
+|------------------|------------------------------------------------------|
+| 🎼 Influence Graph | Explore Sailor's direct and indirect connections (1–3 hops) |
+| 🔥 Genre Diffusion | Visualize timeline trends of Oceanus Folk across decades    |
+| 🚀 Talent Radar    | Identify breakout artists via composite scoring             |
+| 📊 Trend Dashboard | Analyze stylistic output by genre, artist, and time         |
+
+------------------------------------------------------------------------
+
+## 💡 Explore the Dashboard
+
+Click the tabs in the navigation bar to interact with each module:
+
+-   **Influence Graph** – Dynamic visNetwork graph of Sailor Shift's artistic web
+-   **Genre Diffusion** – Area chart + stacked plot of evolving genres
+-   **Talent Radar** – Radar comparison of rising artists
+-   **About** – Methodology, team, and acknowledgments
+
+------------------------------------------------------------------------
+
+## 🖼️ Interface Preview
+
+```{=html}
+<div class="screenshot-section">
+  <img src="images/influence-preview.png" alt="Influence Graph" class="screenshot">
+  <img src="images/genre-preview.png" alt="Genre Diffusion" class="screenshot">
+  <img src="images/radar-preview.png" alt="Talent Score Radar" class="screenshot">
+</div>
+```
+
+------------------------------------------------------------------------
+
+## 👨‍🎓 Built With
+
+-   **Quarto + Shiny**
+-   **networkx**, **visNetwork**, **plotly**, **echarts4r**
+-   Designed with an Apple Music-inspired aesthetic
+
+> © 2025 EchoScope Project — Created for academic purposes under SMU ISSS608
