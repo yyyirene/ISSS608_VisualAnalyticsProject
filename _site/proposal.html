@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -139,7 +105,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#test-1-2-3-4-5" id="toc-test-1-2-3-4-5" class="nav-link active" data-scroll-target="#test-1-2-3-4-5">test 1 2 3 4 5</a></li>
+  <li><a href="#echoscope-leveraging-visual-analytics-graph-intelligence-to-explore-music-influence-with-sailor-shift" id="toc-echoscope-leveraging-visual-analytics-graph-intelligence-to-explore-music-influence-with-sailor-shift" class="nav-link active" data-scroll-target="#echoscope-leveraging-visual-analytics-graph-intelligence-to-explore-music-influence-with-sailor-shift">EchoScope™: Leveraging Visual Analytics &amp; Graph Intelligence to Explore Music Influence with Sailor Shift</a>
+  <ul class="collapse">
+  <li><a href="#project-title" id="toc-project-title" class="nav-link" data-scroll-target="#project-title">1. Project Title</a></li>
+  <li><a href="#short-description" id="toc-short-description" class="nav-link" data-scroll-target="#short-description">2. Short Description</a></li>
+  <li><a href="#motivation-product-positioning" id="toc-motivation-product-positioning" class="nav-link" data-scroll-target="#motivation-product-positioning">3. Motivation: Product Positioning</a></li>
+  <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link" data-scroll-target="#problem-statement">4. Problem Statement</a></li>
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">5. Project Overview</a></li>
+  <li><a href="#website-prototype-design" id="toc-website-prototype-design" class="nav-link" data-scroll-target="#website-prototype-design">6. Website Prototype Design</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -148,13 +122,246 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="test-1-2-3-4-5" class="level1">
-<h1>test 1 2 3 4 5</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="echoscope-leveraging-visual-analytics-graph-intelligence-to-explore-music-influence-with-sailor-shift" class="level2">
+<h2 class="anchored" data-anchor-id="echoscope-leveraging-visual-analytics-graph-intelligence-to-explore-music-influence-with-sailor-shift">EchoScope™: Leveraging Visual Analytics &amp; Graph Intelligence to Explore Music Influence with Sailor Shift</h2>
+<hr>
+<section id="project-title" class="level3">
+<h3 class="anchored" data-anchor-id="project-title">1. Project Title</h3>
+<p><strong>EchoScope™ — A Visual Analytics Prototype for Music Influence Exploration</strong></p>
+<hr>
+</section>
+<section id="short-description" class="level3">
+<h3 class="anchored" data-anchor-id="short-description">2. Short Description</h3>
+<section id="problem" class="level4">
+<h4 class="anchored" data-anchor-id="problem">• Problem</h4>
+<p>The music industry lacks intuitive tools to visually trace influence, discover emerging talents, and understand genre diffusion. Existing dashboards are often statistical, but not exploratory or network-driven.</p>
+</section>
+<section id="proposal" class="level4">
+<h4 class="anchored" data-anchor-id="proposal">• Proposal</h4>
+<p>Using Mini-Challenge 1 (VAST 2025) data, we propose <strong>EchoScope</strong> — a visual analytics tool to explore Sailor Shift’s influence and the rise of Oceanus Folk through interactive visualizations built with Shiny and network graphs.</p>
+</section>
+<section id="case-data-sample" class="level4">
+<h4 class="anchored" data-anchor-id="case-data-sample">📂 Case Data Sample</h4>
+<p>To build this system, we analyzed:</p>
+<ul>
+<li><strong>17,000+ nodes</strong> representing artists, genres, producers, and songs<br>
+</li>
+<li><strong>37,000+ edges</strong> including collaboration, stylistic influence, production, and genre classification<br>
+</li>
+<li><strong>Key fields</strong>: <code>notoriety_date</code>, <code>notable</code>, <code>InStyleOf</code>, <code>PerformerOf</code>, <code>genre</code></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="motivation-product-positioning" class="level3">
+<h3 class="anchored" data-anchor-id="motivation-product-positioning">3. Motivation: Product Positioning</h3>
+<p><strong>EchoScope™</strong> is a conceptual SaaS-like platform that combines:</p>
+<ul>
+<li>Music knowledge graphs<br>
+</li>
+<li>Genre diffusion analysis<br>
+</li>
+<li>Artist influence scoring</li>
+</ul>
+<p>It is designed to simulate a data product that helps:</p>
+<ul>
+<li>🎧 Music platforms discover new talents<br>
+</li>
+<li>🏷️ Labels map influence networks<br>
+</li>
+<li>📊 Brands and analysts follow genre evolution</li>
+</ul>
+<blockquote class="blockquote">
+<p>🎯 <strong>Vision</strong>: Use visual analytics + graph intelligence to discover the next “Sailor Shift.”</p>
+</blockquote>
+<hr>
+</section>
+<section id="problem-statement" class="level3">
+<h3 class="anchored" data-anchor-id="problem-statement">4. Problem Statement</h3>
+<p>We treat Mini-Challenge 1 as a real-world business question:</p>
+<blockquote class="blockquote">
+<p><strong>How can we analyze the career of Sailor Shift and uncover the influence of Oceanus Folk?</strong></p>
+</blockquote>
+<p>EchoScope addresses this through exploratory visual analytics features.</p>
+<hr>
+</section>
+<section id="project-overview" class="level3">
+<h3 class="anchored" data-anchor-id="project-overview">5. Project Overview</h3>
+<section id="product-modules" class="level4">
+<h4 class="anchored" data-anchor-id="product-modules">🧩 1. Product Modules</h4>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 43%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Module Name</th>
+<th>Functionality</th>
+<th>Business Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>🎼 Influence Graph Studio</td>
+<td>Builds 1–3 hop influence network from Sailor and others</td>
+<td>Understand artist leverage and collaboration value</td>
+</tr>
+<tr class="even">
+<td>🔥 Genre Diffusion Tracker</td>
+<td>Tracks Oceanus Folk’s stylistic evolution and diffusion</td>
+<td>Reveal cultural trends and genre crossovers</td>
+</tr>
+<tr class="odd">
+<td>🚀 Talent Score Engine</td>
+<td>Predicts future breakout artists using graph and song metrics</td>
+<td>Helps in signing, scouting, and artist incubation</td>
+</tr>
+<tr class="even">
+<td>📊 Trend Analytics Dashboard</td>
+<td>Generates interactive genre/artist/time reports</td>
+<td>Assists marketing, content, and PR strategies</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="use-cases" class="level4">
+<h4 class="anchored" data-anchor-id="use-cases">🔭 2. Use Cases</h4>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 14%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th>Role</th>
+<th>Interaction Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Talent Scouting</td>
+<td>A&amp;R Manager</td>
+<td>Input genre → Get Top 10 rising stars with influence score</td>
+</tr>
+<tr class="even">
+<td>Campaign Planning</td>
+<td>Marketing</td>
+<td>Filter by region + trend → Identify target collaborations</td>
+</tr>
+<tr class="odd">
+<td>Brand Matching</td>
+<td>Brand Lead</td>
+<td>Use graph to explore matching artist style</td>
+</tr>
+<tr class="even">
+<td>Catalog Curation</td>
+<td>Music Editor</td>
+<td>Track genre evolution to curate songs accordingly</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="development-timeline-simulated" class="level4">
+<h4 class="anchored" data-anchor-id="development-timeline-simulated">📆 3. Development Timeline (Simulated)</h4>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Quarter</th>
+<th>Goal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Q1</td>
+<td>Build V1 prototype (Oceanus Folk + Sailor graph)</td>
+</tr>
+<tr class="even">
+<td>Q2</td>
+<td>Add scoring model and timeline charts</td>
+</tr>
+<tr class="odd">
+<td>Q3</td>
+<td>Expand genres and add user customization options</td>
+</tr>
+<tr class="even">
+<td>Q4</td>
+<td>Demo full use case with Shiny + deployment-ready site</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="team-capacity-for-academic-framing" class="level4">
+<h4 class="anchored" data-anchor-id="team-capacity-for-academic-framing">🧠 4. Team Capacity (for academic framing)</h4>
+<ul>
+<li><strong>Data Analytics</strong>: Graph modeling, centrality, genre signal detection<br>
+</li>
+<li><strong>Shiny Prototyping</strong>: Frontend layout, visual rendering, interactivity</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>EchoScope is not just a course project — it simulates how visual analytics can empower cultural discovery.</strong></p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="website-prototype-design" class="level3">
+<h3 class="anchored" data-anchor-id="website-prototype-design">6. Website Prototype Design</h3>
+<section id="functional-tabs" class="level4">
+<h4 class="anchored" data-anchor-id="functional-tabs">💡 Functional Tabs</h4>
+<ul>
+<li><strong>Home</strong> – Project description, Sailor Shift bio, goal overview<br>
+</li>
+<li><strong>Influence Graph</strong> – Dynamic visNetwork with adjustable depth, filters by genre/year<br>
+</li>
+<li><strong>Genre Diffusion</strong> – Interactive timeline and genre flow chart<br>
+</li>
+<li><strong>Talent Radar</strong> – Artist radar chart based on scoring algorithm, download option<br>
+</li>
+<li><strong>About</strong> – Team roles, methodology, and reflection</li>
+</ul>
+</section>
+<section id="input-output-mapping" class="level4">
+<h4 class="anchored" data-anchor-id="input-output-mapping">📊 Input &amp; Output Mapping</h4>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Input Controls</th>
+<th>Output Visualizations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select Artist / Node</td>
+<td>Interactive network (1–3 hop ego graph)</td>
+</tr>
+<tr class="even">
+<td>Choose Time Range</td>
+<td>Timeline chart, genre progression map</td>
+</tr>
+<tr class="odd">
+<td>Filter by Genre / Notability</td>
+<td>Talent radar score &amp; filtered influence list</td>
+</tr>
+<tr class="even">
+<td>Download Panel</td>
+<td>Export PNG/PDF/CSV from each module</td>
+</tr>
+</tbody>
+</table>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
