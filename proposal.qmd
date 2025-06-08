@@ -121,7 +121,7 @@ EchoScope addresses this through exploratory visual analytics features.
 
 ## Project Schedule
 
-Below is an overview of our project timeline. For detailed tasks, refer to the Gantt chart submitted.
+Below is an overview of our project timeline. 
 
 ```{r gantt, message=FALSE, warning=FALSE}
 library(tidyverse)
