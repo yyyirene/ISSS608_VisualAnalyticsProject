@@ -119,6 +119,15 @@ EchoScope addresses this through exploratory visual analytics features.
 | Filter by Genre / Notability | Talent radar score & filtered influence list |
 | Download Panel               | Export PNG/PDF/CSV from each module          |
 
+---
+### 🧩 Module UI Prototypes
+
+#### 🎨 Genre Diffusion Tracker
+
+```{r echo=FALSE, out.width="100%", fig.cap="UI prototype for Genre Diffusion Tracker"}
+knitr::include_graphics("images/genre_diffusion_ui.png")
+```
+
 ## Project Schedule
 
 Below is an overview of our project timeline. 
