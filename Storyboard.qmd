@@ -1,0 +1,211 @@
+---
+title: "EchoScope™ Prototype Storyboard"
+author: "Team Visual Analytics"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    theme: cosmo
+---
+
+# EchoScope™ Storyboard
+
+EchoScope™ is a visual analytics prototype designed to analyze artist influence, genre diffusion, and talent discovery through interactive dashboards and knowledge graph exploration.
+
+------------------------------------------------------------------------
+
+## 🧭 User Flow Overview
+
+> This section illustrates the main user interaction journey through the EchoScope™ platform.
+
+**Flow Structure:** 1. **Home** – Introduction and orientation\
+2. **Influence Analysis** – Explore influence networks\
+3. **Genre Diffusion** – Track genre trends over time\
+4. **Talent Radar** – Compare and discover emerging talent\
+5. **Trend Dashboard** – Export macro-level insights
+
+📌 *\[Insert user flow diagram or screenshot here\]*\
+`![User Flow Diagram](images/user_flow_placeholder.png){width=100%}`
+
+------------------------------------------------------------------------
+
+## 🏠 Home Panel
+
+### Purpose
+
+Welcome users and introduce the EchoScope™ platform.
+
+### UI Overview
+
+Simple homepage with a welcome message and orientation notes.
+
+📸 *\[Insert screenshot of Home Panel\]*\
+`![Home Panel Screenshot](images/home_panel_placeholder.png){width=100%}`
+
+<details>
+
+<summary>Show code</summary>
+
+``` r
+tabItem(
+  tabName = "home",
+  fluidRow(
+    box(
+      width = 12, status = "primary", solidHeader = FALSE,
+      HTML('<h1>Welcome!</h1><p>EchoScope™ is a web-based visual analytics prototype...</p>')
+    )
+  )
+)
+```
+
+</details>
+
+**🔗 Influence Analysis Panel**
+
+Purpose Visualize and filter artist influence relationships based on node/edge types, year range, and depth.
+
+-   Key Features Filter by node type (Artist, Album, Song)
+
+-   Choose edge types (Performer, Producer, Collaborator)
+
+-   Control release year and depth (e.g., 1-hop, 2-hop)
+
+📸 \[Insert screenshot of Influence Graph Panel\] ![Influence Graph Screenshot](images/influence_graph_placeholder.png){width="100%"}
+
+<details>
+
+<summary>Show code</summary>
+
+``` r
+tabItem(
+  tabName = "influenced",
+  fluidRow(
+    column(4, wellPanel(
+      pickerInput("node_type", "Select Node Type", choices = ...),
+      pickerInput("edge_type", "Select Edge Type", ...),
+      sliderInput("release_range", "Release Year Range", ...),
+      sliderInput("network_depth", "Network Depth", ...)
+    )),
+    column(8, visNetworkOutput("directGraph", height = "700px"))
+  )
+)
+```
+
+</details>
+
+**📈 Genre Diffusion Panel**
+
+Purpose Track the evolution of music genres across time using visual summaries.
+
+-   Key Features Select and compare genres
+
+-   View stacked area charts or yearly heatmaps
+
+📸 \[Insert screenshot of Genre Diffusion Panel\] ![Genre Diffusion Screenshot](images/genre_diffusion_placeholder.png){width="100%"}
+
+<details>
+
+<summary>Show code</summary>
+
+``` r
+tabItem(
+  tabName = "genre",
+  fluidRow(
+    column(4,
+      pickerInput("trend_genre", "Select Genre(s)", ...),
+      dateRangeInput("trend_year_range", "Year Range", ...)
+    ),
+    column(8,
+      tabsetPanel(
+        tabPanel("Stacked Area Chart", plotlyOutput("trend_area_plot")),
+        tabPanel("Yearly Heatmap", plotlyOutput("trend_heatmap"))
+      )
+    )
+  )
+)
+```
+
+</details>
+
+**🚀 Talent Radar Panel Purpose**
+
+Compare emerging artists based on graph features and scoring metrics to identify rising talent in a specific genre.
+
+Key Features 🎯 Filter by Genre Users can focus on a specific musical style to narrow the artist pool.
+
+-   🎛 Customizable Score Weights Sliders allow users to adjust the importance of PageRank, Degree Centrality, Style Similarity, and Notable Works — helping tailor the talent score to different discovery goals.
+
+-   📊 Radar Comparison Chart Visually compare up to 5 artists across the 4 scoring dimensions using an interactive radar plot.
+
+-   📋 Scoreboard Table A sortable, downloadable table summarizing talent scores and ranking details.
+
+-   📥 Export Results Allows users to download the scoring results as a CSV for further analysis or reporting.
+
+📸 Talent Radar Panel![](images/clipboard-1455348347.png)
+
+![](images/clipboard-3947322163.png)
+
+![](images/clipboard-1260943389.png)
+
+<details>
+
+<summary>Show code</summary>
+
+``` r
+Copy
+Edit
+tabItem(
+  tabName = "talent",
+  fluidRow(
+    column(4,
+      pickerInput("talent_genre", "Filter by Genre", ...),
+      uiOutput("select_compare_artists"),
+      sliderInput("weight_pagerank", "PageRank", 0, 1, 0.3),
+      sliderInput("weight_degree", "Degree Centrality", 0, 1, 0.2),
+      sliderInput("weight_similarity", "Style Similarity", 0, 1, 0.3),
+      sliderInput("weight_notable_count", "Notable Works Count", 0, 1, 0.2),
+      downloadButton("download_weighted_scores", "Download CSV")
+    ),
+    column(8,
+      tabsetPanel(
+        tabPanel("Radar Comparison", plotlyOutput("talent_radar_plot")),
+        tabPanel("Scoreboard", DTOutput("talent_score_table"))
+      )
+    )
+  )
+)
+```
+
+</details>
+
+**📊 Trend Dashboard Panel**
+
+Purpose Enable high-level insights export and macro filtering across all trends.
+
+-   Key Features Select multiple genres
+
+-   Choose analysis layers (e.g., cumulative, normalized)
+
+-   Export raw data as CSV
+
+📸 \[Insert screenshot of Trend Dashboard Panel\] ![Trend Dashboard Screenshot](images/trend_dashboard_placeholder.png){width="100%"}
+
+<details>
+
+<summary>Show code</summary>
+
+``` r
+tabItem(
+  tabName = "trend",
+  fluidRow(
+    column(4,
+      pickerInput("trend_genre", "Select Genre(s)", ...),
+      checkboxGroupInput("trend_layers", "Show Layers", choices = ...),
+      downloadButton("download_trend_data", "Export Trend Data")
+    ),
+    column(8, plotlyOutput("trend_area_plot"))
+  )
+)
+```
+
+</details>
