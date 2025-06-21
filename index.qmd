@@ -16,6 +16,7 @@ bibliography: []
   <p><em>Discovering music influence and rising stars through interactive visual analytics</em></p>
 </div>
 ```
+
 ## 🎧 Welcome to EchoScope™
 
 **EchoScope™** is a web-based visual analytics prototype built for the ISSS608 Visual Analytics course project. It uses VAST 2025 Mini-Challenge 1 data to explore the artistic evolution of Sailor Shift and the influence of Oceanus Folk on global music.
@@ -43,12 +44,12 @@ Our dashboard simulates a modern SaaS platform, offering interactive graphs and 
 
 ## 🧩 Functional Modules
 
-| Module Name        | Functionality                                               |
-|------------------|------------------------------------------------------|
+| Module Name | Functionality |
+|----|----|
 | 🎼 Influence Graph | Explore Sailor's direct and indirect connections (1–3 hops) |
-| 🔥 Genre Diffusion | Visualize timeline trends of Oceanus Folk across decades    |
-| 🚀 Talent Radar    | Identify breakout artists via composite scoring             |
-| 📊 Trend Dashboard | Analyze stylistic output by genre, artist, and time         |
+| 🔥 Genre Diffusion | Visualize timeline trends of Oceanus Folk across decades |
+| 🚀 Talent Radar | Identify breakout artists via composite scoring |
+| 📊 Trend Dashboard | Analyze stylistic output by genre, artist, and time |
 
 ------------------------------------------------------------------------
 

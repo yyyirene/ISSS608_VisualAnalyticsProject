@@ -61,7 +61,7 @@ EchoScope addresses this through exploratory visual analytics features.
 #### 🧩 1. Product Modules
 
 | Module Name | Functionality | Business Value |
-|------------------|----------------------------|--------------------------|
+|----|----|----|
 | 🎼 Influence Graph Studio | Builds 1–3 hop influence network from Sailor and others | Understand artist leverage and collaboration value |
 | 🔥 Genre Diffusion Tracker | Tracks Oceanus Folk’s stylistic evolution and diffusion | Reveal cultural trends and genre crossovers |
 | 🚀 Talent Score Engine | Predicts future breakout artists using graph and song metrics | Helps in signing, scouting, and artist incubation |
@@ -72,7 +72,7 @@ EchoScope addresses this through exploratory visual analytics features.
 #### 🔭 2. Use Cases
 
 | Scenario | Role | Interaction Description |
-|----------------|----------------|---------------------------------------|
+|----|----|----|
 | Talent Scouting | A&R Manager | Input genre → Get Top 10 rising stars with influence score |
 | Campaign Planning | Marketing | Filter by region + trend → Identify target collaborations |
 | Brand Matching | Brand Lead | Use graph to explore matching artist style |
@@ -113,7 +113,7 @@ EchoScope addresses this through exploratory visual analytics features.
 #### 📊 Input & Output Mapping
 
 | Input Controls               | Output Visualizations                        |
-|-------------------------|-----------------------------------------------|
+|------------------------------|----------------------------------------------|
 | Select Artist / Node         | Interactive network (1–3 hop ego graph)      |
 | Choose Time Range            | Timeline chart, genre progression map        |
 | Filter by Genre / Notability | Talent radar score & filtered influence list |
