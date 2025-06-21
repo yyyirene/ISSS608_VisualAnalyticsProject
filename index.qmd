@@ -44,7 +44,7 @@ Our dashboard simulates a modern SaaS platform, offering interactive graphs and 
 ## 🧩 Functional Modules
 
 | Module Name        | Functionality                                               |
-|------------------|------------------------------------------------------|
+|--------------------|-------------------------------------------------------------|
 | 🎼 Influence Graph | Explore Sailor's direct and indirect connections (1–3 hops) |
 | 🔥 Genre Diffusion | Visualize timeline trends of Oceanus Folk across decades    |
 | 🚀 Talent Radar    | Identify breakout artists via composite scoring             |
