@@ -1,0 +1,525 @@
+---
+title: "EchoScope™ Prototype Storyboard"
+author: "Team Visual Analytics"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    theme: cosmo
+---
+
+# EchoScope™ Storyboard
+
+EchoScope™ is a visual analytics prototype designed to analyze artist influence, genre diffusion, and talent discovery through interactive dashboards and knowledge graph exploration.
+
+------------------------------------------------------------------------
+
+## 🧭 User Flow Overview
+
+> This section illustrates the main propose user interaction journey through the EchoScope™ platform.
+
+**Flow Structure:**
+
+1\. **Home** – Introduction and orientation\
+2. **Influence Analysis** – Explore influence networks\
+3. **Genre Diffusion** – Track genre trends over time\
+4. **Talent Radar** – Compare and discover emerging talent\
+5. **Trend Dashboard** – Export macro-level insights
+
+📸 EchoScope™ Dashboard Sidebar Navigation Screenshot\
+![](images/clipboard-3547299170.png){width="235"}
+
+------------------------------------------------------------------------
+
+## 🏠 Home Panel
+
+### Purpose
+
+Welcome users and introduce the EchoScope™ platform.
+
+### UI Overview
+
+**Homepage** with a welcome message and orientation notes.
+
+📸 Screenshot of Home Page
+
+![](images/clipboard-1927397582.png)
+
+<details>
+
+<summary>Show code</summary>
+
+``` r
+tabItem(
+  tabName = "home",
+  fluidRow(
+    box(
+      width = 12, status = "primary", solidHeader = FALSE,
+      HTML('<h1>Welcome!</h1><p>EchoScope™ is a web-based visual analytics prototype...</p>')
+    )
+  )
+)
+```
+
+</details>
+
+#### **🔗 Influence Analysis Panel**
+
+**Section Purpose: Understanding Sailor Shift’s Artistic Influence Network**
+
+This section presents a structured exploration of Sailor Shift’s artistic connections, using network analysis to examine three key perspectives:
+
+1.  **Who has Sailor Shift been influenced by?**\
+
+    Explore direct and indirect artistic influences on Sailor Shift over time.
+
+2.  **Who has she collaborated with and influenced?**\
+
+    Identify collaborators and assess how her work has directly or indirectly shaped others.
+
+3.  **Her Influence on the Oceanus Folk Community**\
+
+    Focus on how her influence has spread within the Oceanus Folk genre, including both direct and second-level indirect pathways.
+
+**Data preparation**
+
+```{r eval=FALSE }
+#| code-fold: true
+#| code-summary: "Data preparation Code "
+
+kg <- fromJSON("data/MC1_graph.json")
+
+nodes_tbl <- as_tibble(kg$nodes)
+edges_tbl <- as_tibble(kg$links) 
+
+id_map <- tibble(id = nodes_tbl$id,  #Retrieve the ID column of each row node
+                 index = seq_len(
+                   nrow(nodes_tbl)))  #Generate a line number sequence from 1 to n
+
+
+edges_tbl <- edges_tbl %>%
+  left_join(id_map, by = c("source" = "id")) %>%  # source id → from index
+  rename(from = index) %>% 
+  left_join(id_map, by = c("target" = "id")) %>%  # target id → to index
+  rename(to = index)
+
+edges_tbl <- edges_tbl %>%
+  filter(!is.na(from), !is.na(to))
+
+extract_subnetwork <- function(graph, node_name, 
+                               distance = NULL, 
+                               direction = c("all", "in", "out"),
+                               edge_types = NULL,
+                               node_types = NULL) {
+  direction <- match.arg(direction)
+  node <- which(V(graph)$name == node_name)
+  if (length(node) == 0) stop("Node name not found in graph.")
+  distance <- ifelse(is.null(distance), length(graph), distance)
+  
+  mode <- switch(direction,
+                 all = "all",
+                 `in` = "in",
+                 out = "out")
+  
+  igraph_subgraph <- induced_subgraph(graph, vids = ego(graph, node, order = distance, mode = mode)[[1]])
+  
+  nodes_df <- igraph::as_data_frame(igraph_subgraph, what = "vertices")
+  edges_df <- igraph::as_data_frame(igraph_subgraph, what = "edges")
+  
+  if (!is.null(edge_types)) {
+    edges_df <- edges_df %>% dplyr::filter(`Edge Type` %in% edge_types)
+  }
+  
+  if (!is.null(node_types)) {
+    nodes_df <- nodes_df %>% dplyr::filter(`Node Type` %in% node_types)
+  }
+  
+  used_node_ids <- unique(c(edges_df$from, edges_df$to))
+  nodes_df <- nodes_df %>% dplyr::filter(name %in% used_node_ids)
+  
+  tidygraph::tbl_graph(nodes = nodes_df, edges = edges_df, directed = igraph::is_directed(graph))
+}
+
+nodes_tbl <- nodes_tbl %>% mutate(index = row_number())
+
+sailor_index <- nodes_tbl %>%
+  filter(name == "Sailor Shift") %>%
+  pull(index)
+
+edges_from_sailor <- edges_tbl %>%
+  filter(from == sailor_index)
+
+first_layer_info <- edges_from_sailor %>%
+  inner_join(nodes_tbl, by = c("to" = "index")) %>%
+  filter(`Node Type` %in% c("Song", "Album", "MusicalGroup", "RecordLabel"))
+
+first_layer_targets <- first_layer_info$to
+
+influence_edges <- c("InStyleOf", "LyricalReferenceTo", "InterpolatesFrom", "CoverOf", "DirectlySamples")
+
+edges_2nd <- edges_tbl %>%
+  filter(from %in% first_layer_targets & `Edge Type` %in% influence_edges)
+
+influenced_works <- edges_2nd$to
+songs_with_outgoing <- unique(edges_2nd$from)
+
+person_edge_types <- c("PerformerOf", "ComposerOf", "LyricistOf", "ProducerOf")
+
+edges_people_to_2nd <- edges_tbl %>%
+  filter(
+    to %in% influenced_works,
+    `Edge Type` %in% person_edge_types
+  ) %>%
+  left_join(nodes_tbl %>% select(index, `Node Type`), by = c("from" = "index")) %>%
+  rename(`From Node Type` = `Node Type`) %>%
+  filter(`From Node Type` %in% c("Person", "RecordLabel")) %>%
+  left_join(nodes_tbl %>% select(index, `Node Type`, release_date), by = c("to" = "index")) %>%
+  rename(`To Node Type` = `Node Type`, release_date = release_date)
+
+first_layer_filtered <- first_layer_info %>%
+  filter(
+    (`Node Type` %in% c("Song", "Album") & to %in% songs_with_outgoing) |
+      (`Node Type` %in% c("MusicalGroup", "RecordLabel"))
+  )
+
+edges_from_sailor_filtered <- edges_from_sailor %>%
+  semi_join(first_layer_filtered, by = c("to" = "to"))
+
+all_edges <- bind_rows(
+  edges_from_sailor_filtered,
+  edges_2nd,
+  edges_people_to_2nd %>% rename(from = from, to = to)
+)
+
+node_ids <- unique(c(all_edges$from, all_edges$to))
+
+nodes_subgraph <- nodes_tbl %>%
+  filter(index %in% node_ids) %>%
+  mutate(
+    id = index,
+    label = name,
+    group = `Node Type`,
+    release_year = as.numeric(substr(release_date, 1, 4)),
+    written_year = as.numeric(substr(written_date, 1, 4)),
+    notoriety_year = as.numeric(substr(notoriety_date, 1, 4)),
+    
+    title = paste0(
+      "<b>", name, "</b><br>",
+      "Type: ", `Node Type`, "<br>",
+      "Release Year: ", release_year, "<br>",
+      "Written Year: ", written_year, "<br>",
+      "Notoriety Year: ", notoriety_year, "<br>",
+      "Genre: ", genre, "<br>",
+      "Single: ", single, "<br>",
+      "Notable: ", notable
+    )
+  ) %>%
+  select(id, label, group, release_year, notable, single, genre,
+         written_year, notoriety_year, title)
+
+
+edges_subgraph <- all_edges %>%
+
+  left_join(
+    nodes_tbl %>%
+      select(index, from_node_type = `Node Type`, from_name = name),
+    by = c("from" = "index")
+  ) %>%
+  
+  left_join(
+    nodes_tbl %>%
+      select(index, to_node_type = `Node Type`, to_name = name,
+             single, genre, release_date, notable, written_date, notoriety_date),
+    by = c("to" = "index")
+  ) %>%
+
+  mutate(
+    release_date = release_date.y
+  ) %>%
+  
+  transmute(
+    from,
+    to,
+    from_name,
+    from_node_type,
+    edge_type = `Edge Type`,
+    label = `Edge Type`,
+    to_name,
+    to_node_type,
+    single,
+    genre,
+    release_date,
+    notable,
+    written_date,
+    notoriety_date
+  )
+
+```
+
+📸 Screenshot of Influence Graph Panel
+
+![](images/clipboard-3201239933.png)
+
+1：We are going to use the tabset panel to focus on three key perspectives of influence analysis；
+
+2 : Each section provides an overview introduction to the influence network from a specific perspective, helping users better understand the background and objectives of this dashboard.
+
+![](images/clipboard-2766987563.png)
+
+![](images/clipboard-84853129.png)
+
+The main dashboard will show into four parts **Interactive** **Filter Panel, Plot,** **Legend Panel,** **Interactive Data Table :**
+
+1.  **Interactive** **Filter Panel :**
+
+Objective : To empower users to efficiently explore and narrow down the influence network of Sailor Shift by providing intuitive and responsive filtering options.
+
+Planned Filter Components & Intended Functionality
+
+| Filter | User Interaction | Planned Purpose |
+|----|----|----|
+| Select Node Type | Multi-select (e.g., Album, Person, Song, RecordLabel, etc.) | Filters the network to show only selected entity types as nodes. |
+| Search Node Name | Dropdown or typeahead search (e.g., "Brooke Olson") | Focuses the network graph on the selected node, zooming in automatically. |
+| Select Edge Type | Multi-select (e.g., ComposerOf, Interpolates, etc.) | Filters edges by relationship type to limit visual noise and highlight key links. |
+| Is Notable? | Radio buttons (All / TRUE / FALSE) | Filters nodes by whether they are tagged as “notable” to emphasize known artists. |
+| Select Genre(s) | Multi-select (e.g., Alternative Rock, Avant-Garde Folk, etc.) | Enables genre-based filtering to tailor the view to specific music categories. |
+| Release Year Range | Range slider (1983–2038) + "Select All Years" button | Restricts nodes by their associated release year, helping with temporal filtering. |
+| Select Network Depth (from Sailor Shift) | Range slider (1–3) + "Select All network" button | Controls how many layers of influence (direct and indirect) are displayed. |
+
+Interaction Design Considerations
+
+-   **Responsiveness**: Each filter is reactive and updates the network graph in real time.
+
+-   **Performance Notices**: Informational messages are placed beneath heavier operations (e.g., select all years/network depth) to prepare the user for slight delays.
+
+-   **Enhanced UX**: All dropdowns use searchable `pickerInput`s with “actions-box” for select/deselect all, streamlining multi-choice workflows.
+
+2.**Planned Visualization Panel: Influence Plot & Summary Statistics and the related legends**
+
+Objective
+
+To dynamically visualize Sailor Shift's influence network and provide quantitative summaries that respond in real-time to user-selected filters.And Influence plot, we plan to use the network plot to see the influence and for the Statistics, we will use the bar chart.
+
+Network Plot & Summary plan
+
+|  |  |  |
+|------------------|-----------------------|-------------------------------|
+| Tab | Content Type | Planned Interaction |
+| Influence Network | Plan to use`visNetwork` graph | Displays a dynamic node-link network showing direct and indirect influence. |
+|  |  | Hover reveals details; click highlights sub-network. |
+|  |  | Responds in real time to filters in the left panel (node type, genre, years, etc.). |
+| Summary Statistics | Plan to use `plotly` interactive bar chart | Shows count of edges by relationship type (e.g., ComposerOf, PerformerOf, etc.). |
+|  |  | Aggregated metrics update live as filters change. |
+
+Propose outcome of the plots:
+
+![](images/clipboard-3903768430.png)For the legends, we will also add some interactions into the summary bar chart to find more information for the audience and in order to make more clearly to understand the network, the legends will also show the node types and the edge types for references.
+
+**3.Planned Table Panel: Influence Relationship Details**
+
+Objective
+
+To provide a tabular view of the filtered influence relationships, allowing users to explore details at a granular level, complementing the network graph.
+
+Design & Features
+
+Functionality plan:
+
+-   **Paginated view** with adjustable row count (5, 10, 25, 50, 100)
+
+-   **Search bar** for keyword-based filtering (e.g., node name, genre)
+
+-   **Sortable columns** for customized sorting (e.g., by release year or relationship type)
+
+Dynamic Interaction
+
+-   Table will updates in real time based on all applied filters (e.g., node type, genre, year range).
+
+-   Supports detailed exploration and verification of insights observed in the visual graph and summary statistics.
+
+-   Plan to add downloadable CSV export or row click-to-expand options in the future.
+
+Here are the propose skeleton of the first part of the network influence UI design.
+
+<details>
+
+<summary>UI Design Planning Code </summary>
+
+``` r
+tabItem(
+  tabName = "influenced"/"Impact & Collaborated"/"Community influence",
+  fluidRow(
+    column(4, wellPanel(
+      #Filter Design
+      pickerInput("node_type", "Select Node Type", choices = ...),
+      pickerInput("edge_type", "Select Edge Type", ...),
+      helpText(tagList(),...),
+      radioButtons(inputId = "notable_filter",...),
+      pickerInput(inputId = "genre_filter",label = "Select Genre(s)",...),
+      sliderInput("release_range", "Release Year Range", ...),
+      actionButton("release_range_btn", "Select All Years"),
+      sliderInput("network_depth", "Network Depth", ...)
+    )),
+    column(8, visNetworkOutput("directGraph", height = "700px",...))
+    column(DTOutput("directTable", ...)
+    
+  )
+)
+```
+
+</details>
+
+```{r eval=FALSE}
+#| code-fold: true
+#| code-summary: "Serve Design Planning Code "
+server <- function(input, output, session) {
+  
+  #1 Dynamic Filtering of Edges and Nodes
+  
+  - filtered_edges()         # Filter edges based on network depth and edge type
+  - filtered_nodes()         # Filter nodes based on valid IDs and input criteria
+  - observe()                # Dynamically update node_name picker choices
+  
+  #2 Network Graph Rendering and Interaction
+  
+  - output$directGraph       # Render visNetwork main graph
+  - observeEvent(input$node_name)       # Focus and highlight on selected node
+  - observeEvent(input$notable_filter)  # Highlight nodes based on "Notable" filter
+  
+  #3 Quick Interaction Buttons
+  
+  - observeEvent(input$release_range_btn)     # Reset release year slider to full range
+  - observeEvent(input$network_depth_btn)     # Set network depth to maximum (e.g., 3)
+  
+  #4 Data Table Output Section (DT::datatable)
+  
+  - output$directTable       # Display filtered edge data with node names, types, genres, and dates
+  
+  #5 Summary Statistics Visualization Output
+  
+  - output$groupEdgeBarPlot  # Render grouped bar chart (Node Type × Edge Type) using ggplotly
+  - output$barInfo           # Display tooltip text on bar click (plotly_click event)
+
+}
+
+
+```
+
+</details>
+
+**📈 Genre Diffusion Panel**
+
+Purpose Track the evolution of music genres across time using visual summaries.
+
+-   Key Features Select and compare genres
+
+-   View stacked area charts or yearly heatmaps
+
+📸 \[Insert screenshot of Genre Diffusion Panel\] ![Genre Diffusion Screenshot](images/genre_diffusion_placeholder.png){width="100%"}
+
+<details>
+
+<summary>Show code</summary>
+
+``` r
+tabItem(
+  tabName = "genre",
+  fluidRow(
+    column(4,
+      pickerInput("trend_genre", "Select Genre(s)", ...),
+      dateRangeInput("trend_year_range", "Year Range", ...)
+    ),
+    column(8,
+      tabsetPanel(
+        tabPanel("Stacked Area Chart", plotlyOutput("trend_area_plot")),
+        tabPanel("Yearly Heatmap", plotlyOutput("trend_heatmap"))
+      )
+    )
+  )
+)
+```
+
+</details>
+
+**🚀 Talent Radar Panel Purpose**
+
+Compare emerging artists based on graph features and scoring metrics to identify rising talent in a specific genre.
+
+Key Features 🎯 Filter by Genre Users can focus on a specific musical style to narrow the artist pool.
+
+-   🎛 Customizable Score Weights Sliders allow users to adjust the importance of PageRank, Degree Centrality, Style Similarity, and Notable Works — helping tailor the talent score to different discovery goals.
+
+-   📊 Radar Comparison Chart Visually compare up to 5 artists across the 4 scoring dimensions using an interactive radar plot.
+
+-   📋 Scoreboard Table A sortable, downloadable table summarizing talent scores and ranking details.
+
+-   📥 Export Results Allows users to download the scoring results as a CSV for further analysis or reporting.
+
+📸 Talent Radar Panel![](images/clipboard-1455348347.png)
+
+![](images/clipboard-3947322163.png)
+
+![](images/clipboard-1260943389.png)
+
+<details>
+
+<summary>Show code</summary>
+
+``` r
+Copy
+Edit
+tabItem(
+  tabName = "talent",
+  fluidRow(
+    column(4,
+      pickerInput("talent_genre", "Filter by Genre", ...),
+      uiOutput("select_compare_artists"),
+      sliderInput("weight_pagerank", "PageRank", 0, 1, 0.3),
+      sliderInput("weight_degree", "Degree Centrality", 0, 1, 0.2),
+      sliderInput("weight_similarity", "Style Similarity", 0, 1, 0.3),
+      sliderInput("weight_notable_count", "Notable Works Count", 0, 1, 0.2),
+      downloadButton("download_weighted_scores", "Download CSV")
+    ),
+    column(8,
+      tabsetPanel(
+        tabPanel("Radar Comparison", plotlyOutput("talent_radar_plot")),
+        tabPanel("Scoreboard", DTOutput("talent_score_table"))
+      )
+    )
+  )
+)
+```
+
+</details>
+
+**📊 Trend Dashboard Panel**
+
+Purpose Enable high-level insights export and macro filtering across all trends.
+
+-   Key Features Select multiple genres
+
+-   Choose analysis layers (e.g., cumulative, normalized)
+
+-   Export raw data as CSV
+
+📸 \[Insert screenshot of Trend Dashboard Panel\] ![Trend Dashboard Screenshot](images/trend_dashboard_placeholder.png){width="100%"}
+
+<details>
+
+<summary>Show code</summary>
+
+``` r
+tabItem(
+  tabName = "trend",
+  fluidRow(
+    column(4,
+      pickerInput("trend_genre", "Select Genre(s)", ...),
+      checkboxGroupInput("trend_layers", "Show Layers", choices = ...),
+      downloadButton("download_trend_data", "Export Trend Data")
+    ),
+    column(8, plotlyOutput("trend_area_plot"))
+  )
+)
+```
+
+</details>
