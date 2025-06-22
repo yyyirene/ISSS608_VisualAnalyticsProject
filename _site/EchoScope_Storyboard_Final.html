@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Team Visual Analytics">
+<meta name="dcterms.date" content="2025-06-22">
+
+<title>EchoScope™ - EchoScope™ Prototype Storyboard</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">EchoScope™</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./influence-graph.qmd" rel="" target="">
+ <span class="menu-text">Influence Graph</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./genre-diffusion.qmd" rel="" target="">
+ <span class="menu-text">Genre Diffusion</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./talent-radar.qmd" rel="" target="">
+ <span class="menu-text">Talent Radar</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Storyboard.html" rel="" target="">
+ <span class="menu-text">Storyboard</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./proposal.html" rel="" target="">
+ <span class="menu-text">Proposal</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#echoscope-storyboard" id="toc-echoscope-storyboard" class="nav-link active" data-scroll-target="#echoscope-storyboard">EchoScope™ Storyboard</a>
+  <ul class="collapse">
+  <li><a href="#user-flow-overview" id="toc-user-flow-overview" class="nav-link" data-scroll-target="#user-flow-overview">🧭 User Flow Overview</a></li>
+  <li><a href="#home-panel" id="toc-home-panel" class="nav-link" data-scroll-target="#home-panel">🏠 Home Panel</a>
+  <ul class="collapse">
+  <li><a href="#purpose" id="toc-purpose" class="nav-link" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#ui-overview" id="toc-ui-overview" class="nav-link" data-scroll-target="#ui-overview">UI Overview</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#implementation-summary" id="toc-implementation-summary" class="nav-link" data-scroll-target="#implementation-summary">📌 Implementation Summary</a>
+  <ul class="collapse">
+  <li><a href="#data-preparation-process" id="toc-data-preparation-process" class="nav-link" data-scroll-target="#data-preparation-process">🔧 Data Preparation Process</a></li>
+  <li><a href="#selection-of-data-visualisation-techniques" id="toc-selection-of-data-visualisation-techniques" class="nav-link" data-scroll-target="#selection-of-data-visualisation-techniques">📊 Selection of Data Visualisation Techniques</a></li>
+  <li><a href="#visual-design-interactivity-principles" id="toc-visual-design-interactivity-principles" class="nav-link" data-scroll-target="#visual-design-interactivity-principles">🎨 Visual Design &amp; Interactivity Principles</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">EchoScope™ Prototype Storyboard</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Team Visual Analytics </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 22, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="echoscope-storyboard" class="level1">
+<h1>EchoScope™ Storyboard</h1>
+<p>EchoScope™ is a visual analytics prototype designed to analyze artist influence, genre diffusion, and talent discovery through interactive dashboards and knowledge graph exploration.</p>
+<hr>
+<section id="user-flow-overview" class="level2">
+<h2 class="anchored" data-anchor-id="user-flow-overview">🧭 User Flow Overview</h2>
+<blockquote class="blockquote">
+<p>This section illustrates the main propose user interaction journey through the EchoScope™ platform.</p>
+</blockquote>
+<p><strong>Flow Structure:</strong></p>
+<p>1. <strong>Home</strong> – Introduction and orientation<br>
+2. <strong>Influence Analysis</strong> – Explore influence networks<br>
+3. <strong>Genre Diffusion</strong> – Track genre trends over time<br>
+4. <strong>Talent Radar</strong> – Compare and discover emerging talent<br>
+5. <strong>Trend Dashboard</strong> – Export macro-level insights</p>
+<p>📸 EchoScope™ Dashboard Sidebar Navigation Screenshot<br>
+<img src="images/clipboard-3547299170.png" class="img-fluid" width="235"></p>
+<hr>
+</section>
+<section id="home-panel" class="level2">
+<h2 class="anchored" data-anchor-id="home-panel">🏠 Home Panel</h2>
+<section id="purpose" class="level3">
+<h3 class="anchored" data-anchor-id="purpose">Purpose</h3>
+<p>Welcome users and introduce the EchoScope™ platform.</p>
+</section>
+<section id="ui-overview" class="level3">
+<h3 class="anchored" data-anchor-id="ui-overview">UI Overview</h3>
+<p><strong>Homepage</strong> with a welcome message and orientation notes.</p>
+<p>📸 Screenshot of Home Page</p>
+<p><img src="images/clipboard-1927397582.png" class="img-fluid"></p>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabItem</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tabName =</span> <span class="st">"home"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">box</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">12</span>, <span class="at">status =</span> <span class="st">"primary"</span>, <span class="at">solidHeader =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">HTML</span>(<span class="st">'&lt;h1&gt;Welcome!&lt;/h1&gt;&lt;p&gt;EchoScope™ is a web-based visual analytics prototype...&lt;/p&gt;'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<section id="influence-analysis-panel" class="level4">
+<h4 class="anchored" data-anchor-id="influence-analysis-panel"><strong>🔗 Influence Analysis Panel</strong></h4>
+<p><strong>Section Purpose: Understanding Sailor Shift’s Artistic Influence Network</strong></p>
+<p>This section presents a structured exploration of Sailor Shift’s artistic connections, using network analysis to examine three key perspectives:</p>
+<ol type="1">
+<li><p><strong>Who has Sailor Shift been influenced by?</strong><br>
+</p>
+<p>Explore direct and indirect artistic influences on Sailor Shift over time.</p></li>
+<li><p><strong>Who has she collaborated with and influenced?</strong><br>
+</p>
+<p>Identify collaborators and assess how her work has directly or indirectly shaped others.</p></li>
+<li><p><strong>Her Influence on the Oceanus Folk Community</strong><br>
+</p>
+<p>Focus on how her influence has spread within the Oceanus Folk genre, including both direct and second-level indirect pathways.</p></li>
+</ol>
+<p><strong>Data preparation</strong></p>
+<div class="cell">
+<details>
+<summary>Data preparation Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>kg <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="st">"data/MC1_graph.json"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>nodes_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(kg<span class="sc">$</span>nodes)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>edges_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(kg<span class="sc">$</span>links) </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>id_map <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">id =</span> nodes_tbl<span class="sc">$</span>id,  <span class="co">#Retrieve the ID column of each row node</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">index =</span> <span class="fu">seq_len</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">nrow</span>(nodes_tbl)))  <span class="co">#Generate a line number sequence from 1 to n</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>edges_tbl <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(id_map, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"source"</span> <span class="ot">=</span> <span class="st">"id"</span>)) <span class="sc">%&gt;%</span>  <span class="co"># source id → from index</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">from =</span> index) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(id_map, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"target"</span> <span class="ot">=</span> <span class="st">"id"</span>)) <span class="sc">%&gt;%</span>  <span class="co"># target id → to index</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">to =</span> index)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>edges_tbl <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(from), <span class="sc">!</span><span class="fu">is.na</span>(to))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>extract_subnetwork <span class="ot">&lt;-</span> <span class="cf">function</span>(graph, node_name, </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                               <span class="at">distance =</span> <span class="cn">NULL</span>, </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                               <span class="at">direction =</span> <span class="fu">c</span>(<span class="st">"all"</span>, <span class="st">"in"</span>, <span class="st">"out"</span>),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                               <span class="at">edge_types =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                               <span class="at">node_types =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  direction <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(direction)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  node <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">V</span>(graph)<span class="sc">$</span>name <span class="sc">==</span> node_name)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(node) <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">stop</span>(<span class="st">"Node name not found in graph."</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  distance <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.null</span>(distance), <span class="fu">length</span>(graph), distance)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  mode <span class="ot">&lt;-</span> <span class="cf">switch</span>(direction,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                 <span class="at">all =</span> <span class="st">"all"</span>,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>                 <span class="st">`</span><span class="at">in</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"in"</span>,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>                 <span class="at">out =</span> <span class="st">"out"</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  igraph_subgraph <span class="ot">&lt;-</span> <span class="fu">induced_subgraph</span>(graph, <span class="at">vids =</span> <span class="fu">ego</span>(graph, node, <span class="at">order =</span> distance, <span class="at">mode =</span> mode)[[<span class="dv">1</span>]])</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  nodes_df <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">as_data_frame</span>(igraph_subgraph, <span class="at">what =</span> <span class="st">"vertices"</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  edges_df <span class="ot">&lt;-</span> igraph<span class="sc">::</span><span class="fu">as_data_frame</span>(igraph_subgraph, <span class="at">what =</span> <span class="st">"edges"</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(edge_types)) {</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    edges_df <span class="ot">&lt;-</span> edges_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="st">`</span><span class="at">Edge Type</span><span class="st">`</span> <span class="sc">%in%</span> edge_types)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(node_types)) {</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    nodes_df <span class="ot">&lt;-</span> nodes_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="st">`</span><span class="at">Node Type</span><span class="st">`</span> <span class="sc">%in%</span> node_types)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  used_node_ids <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(edges_df<span class="sc">$</span>from, edges_df<span class="sc">$</span>to))</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  nodes_df <span class="ot">&lt;-</span> nodes_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">%in%</span> used_node_ids)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  tidygraph<span class="sc">::</span><span class="fu">tbl_graph</span>(<span class="at">nodes =</span> nodes_df, <span class="at">edges =</span> edges_df, <span class="at">directed =</span> igraph<span class="sc">::</span><span class="fu">is_directed</span>(graph))</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>nodes_tbl <span class="ot">&lt;-</span> nodes_tbl <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">index =</span> <span class="fu">row_number</span>())</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>sailor_index <span class="ot">&lt;-</span> nodes_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Sailor Shift"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(index)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>edges_from_sailor <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(from <span class="sc">==</span> sailor_index)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>first_layer_info <span class="ot">&lt;-</span> edges_from_sailor <span class="sc">%&gt;%</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(nodes_tbl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"to"</span> <span class="ot">=</span> <span class="st">"index"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Node Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Song"</span>, <span class="st">"Album"</span>, <span class="st">"MusicalGroup"</span>, <span class="st">"RecordLabel"</span>))</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>first_layer_targets <span class="ot">&lt;-</span> first_layer_info<span class="sc">$</span>to</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>influence_edges <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"InStyleOf"</span>, <span class="st">"LyricalReferenceTo"</span>, <span class="st">"InterpolatesFrom"</span>, <span class="st">"CoverOf"</span>, <span class="st">"DirectlySamples"</span>)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>edges_2nd <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(from <span class="sc">%in%</span> first_layer_targets <span class="sc">&amp;</span> <span class="st">`</span><span class="at">Edge Type</span><span class="st">`</span> <span class="sc">%in%</span> influence_edges)</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>influenced_works <span class="ot">&lt;-</span> edges_2nd<span class="sc">$</span>to</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>songs_with_outgoing <span class="ot">&lt;-</span> <span class="fu">unique</span>(edges_2nd<span class="sc">$</span>from)</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>person_edge_types <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PerformerOf"</span>, <span class="st">"ComposerOf"</span>, <span class="st">"LyricistOf"</span>, <span class="st">"ProducerOf"</span>)</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>edges_people_to_2nd <span class="ot">&lt;-</span> edges_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    to <span class="sc">%in%</span> influenced_works,</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Edge Type</span><span class="st">`</span> <span class="sc">%in%</span> person_edge_types</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(nodes_tbl <span class="sc">%&gt;%</span> <span class="fu">select</span>(index, <span class="st">`</span><span class="at">Node Type</span><span class="st">`</span>), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"from"</span> <span class="ot">=</span> <span class="st">"index"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">`</span><span class="at">From Node Type</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Node Type</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">From Node Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Person"</span>, <span class="st">"RecordLabel"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(nodes_tbl <span class="sc">%&gt;%</span> <span class="fu">select</span>(index, <span class="st">`</span><span class="at">Node Type</span><span class="st">`</span>, release_date), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"to"</span> <span class="ot">=</span> <span class="st">"index"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">`</span><span class="at">To Node Type</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Node Type</span><span class="st">`</span>, <span class="at">release_date =</span> release_date)</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>first_layer_filtered <span class="ot">&lt;-</span> first_layer_info <span class="sc">%&gt;%</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    (<span class="st">`</span><span class="at">Node Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Song"</span>, <span class="st">"Album"</span>) <span class="sc">&amp;</span> to <span class="sc">%in%</span> songs_with_outgoing) <span class="sc">|</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>      (<span class="st">`</span><span class="at">Node Type</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"MusicalGroup"</span>, <span class="st">"RecordLabel"</span>))</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>edges_from_sailor_filtered <span class="ot">&lt;-</span> edges_from_sailor <span class="sc">%&gt;%</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(first_layer_filtered, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"to"</span> <span class="ot">=</span> <span class="st">"to"</span>))</span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>all_edges <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>  edges_from_sailor_filtered,</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>  edges_2nd,</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>  edges_people_to_2nd <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">from =</span> from, <span class="at">to =</span> to)</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>node_ids <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(all_edges<span class="sc">$</span>from, all_edges<span class="sc">$</span>to))</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>nodes_subgraph <span class="ot">&lt;-</span> nodes_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(index <span class="sc">%in%</span> node_ids) <span class="sc">%&gt;%</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> index,</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> name,</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="st">`</span><span class="at">Node Type</span><span class="st">`</span>,</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>    <span class="at">release_year =</span> <span class="fu">as.numeric</span>(<span class="fu">substr</span>(release_date, <span class="dv">1</span>, <span class="dv">4</span>)),</span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>    <span class="at">written_year =</span> <span class="fu">as.numeric</span>(<span class="fu">substr</span>(written_date, <span class="dv">1</span>, <span class="dv">4</span>)),</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>    <span class="at">notoriety_year =</span> <span class="fu">as.numeric</span>(<span class="fu">substr</span>(notoriety_date, <span class="dv">1</span>, <span class="dv">4</span>)),</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste0</span>(</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;b&gt;"</span>, name, <span class="st">"&lt;/b&gt;&lt;br&gt;"</span>,</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Type: "</span>, <span class="st">`</span><span class="at">Node Type</span><span class="st">`</span>, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Release Year: "</span>, release_year, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Written Year: "</span>, written_year, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Notoriety Year: "</span>, notoriety_year, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Genre: "</span>, genre, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Single: "</span>, single, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Notable: "</span>, notable</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, label, group, release_year, notable, single, genre,</span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>         written_year, notoriety_year, title)</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>edges_subgraph <span class="ot">&lt;-</span> all_edges <span class="sc">%&gt;%</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>    nodes_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(index, <span class="at">from_node_type =</span> <span class="st">`</span><span class="at">Node Type</span><span class="st">`</span>, <span class="at">from_name =</span> name),</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"from"</span> <span class="ot">=</span> <span class="st">"index"</span>)</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>    nodes_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(index, <span class="at">to_node_type =</span> <span class="st">`</span><span class="at">Node Type</span><span class="st">`</span>, <span class="at">to_name =</span> name,</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>             single, genre, release_date, notable, written_date, notoriety_date),</span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"to"</span> <span class="ot">=</span> <span class="st">"index"</span>)</span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>    <span class="at">release_date =</span> release_date.y</span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>    from,</span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>    to,</span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>    from_name,</span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>    from_node_type,</span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>    <span class="at">edge_type =</span> <span class="st">`</span><span class="at">Edge Type</span><span class="st">`</span>,</span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">`</span><span class="at">Edge Type</span><span class="st">`</span>,</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>    to_name,</span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>    to_node_type,</span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>    single,</span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a>    genre,</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>    release_date,</span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>    notable,</span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>    written_date,</span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>    notoriety_date</span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>📸 Screenshot of Influence Graph Panel</p>
+<p><img src="images/clipboard-3201239933.png" class="img-fluid"></p>
+<p>1：We are going to use the tabset panel to focus on three key perspectives of influence analysis；</p>
+<p>2 : Each section provides an overview introduction to the influence network from a specific perspective, helping users better understand the background and objectives of this dashboard.</p>
+<p><img src="images/clipboard-2766987563.png" class="img-fluid"></p>
+<p><img src="images/clipboard-84853129.png" class="img-fluid"></p>
+<p>The main dashboard will show into four parts <strong>Interactive</strong> <strong>Filter Panel, Plot,</strong> <strong>Legend Panel,</strong> <strong>Interactive Data Table :</strong></p>
+<ol type="1">
+<li><strong>Interactive</strong> <strong>Filter Panel :</strong></li>
+</ol>
+<p>Objective : To empower users to efficiently explore and narrow down the influence network of Sailor Shift by providing intuitive and responsive filtering options.</p>
+<p>Planned Filter Components &amp; Intended Functionality</p>
+<table class="table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 33%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Filter</th>
+<th>User Interaction</th>
+<th>Planned Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select Node Type</td>
+<td>Multi-select (e.g., Album, Person, Song, RecordLabel, etc.)</td>
+<td>Filters the network to show only selected entity types as nodes.</td>
+</tr>
+<tr class="even">
+<td>Search Node Name</td>
+<td>Dropdown or typeahead search (e.g., “Brooke Olson”)</td>
+<td>Focuses the network graph on the selected node, zooming in automatically.</td>
+</tr>
+<tr class="odd">
+<td>Select Edge Type</td>
+<td>Multi-select (e.g., ComposerOf, Interpolates, etc.)</td>
+<td>Filters edges by relationship type to limit visual noise and highlight key links.</td>
+</tr>
+<tr class="even">
+<td>Is Notable?</td>
+<td>Radio buttons (All / TRUE / FALSE)</td>
+<td>Filters nodes by whether they are tagged as “notable” to emphasize known artists.</td>
+</tr>
+<tr class="odd">
+<td>Select Genre(s)</td>
+<td>Multi-select (e.g., Alternative Rock, Avant-Garde Folk, etc.)</td>
+<td>Enables genre-based filtering to tailor the view to specific music categories.</td>
+</tr>
+<tr class="even">
+<td>Release Year Range</td>
+<td>Range slider (1983–2038) + “Select All Years” button</td>
+<td>Restricts nodes by their associated release year, helping with temporal filtering.</td>
+</tr>
+<tr class="odd">
+<td>Select Network Depth (from Sailor Shift)</td>
+<td>Range slider (1–3) + “Select All network” button</td>
+<td>Controls how many layers of influence (direct and indirect) are displayed.</td>
+</tr>
+</tbody>
+</table>
+<p>Interaction Design Considerations</p>
+<ul>
+<li><p><strong>Responsiveness</strong>: Each filter is reactive and updates the network graph in real time.</p></li>
+<li><p><strong>Performance Notices</strong>: Informational messages are placed beneath heavier operations (e.g., select all years/network depth) to prepare the user for slight delays.</p></li>
+<li><p><strong>Enhanced UX</strong>: All dropdowns use searchable <code>pickerInput</code>s with “actions-box” for select/deselect all, streamlining multi-choice workflows.</p></li>
+</ul>
+<p>2.<strong>Planned Visualization Panel: Influence Plot &amp; Summary Statistics and the related legends</strong></p>
+<p>Objective</p>
+<p>To dynamically visualize Sailor Shift’s influence network and provide quantitative summaries that respond in real-time to user-selected filters.And Influence plot, we plan to use the network plot to see the influence and for the Statistics, we will use the bar chart.</p>
+<p>Network Plot &amp; Summary plan</p>
+<table class="table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 29%">
+<col style="width: 57%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Tab</td>
+<td>Content Type</td>
+<td>Planned Interaction</td>
+</tr>
+<tr class="even">
+<td>Influence Network</td>
+<td>Plan to use<code>visNetwork</code> graph</td>
+<td>Displays a dynamic node-link network showing direct and indirect influence.</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>Hover reveals details; click highlights sub-network.</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Responds in real time to filters in the left panel (node type, genre, years, etc.).</td>
+</tr>
+<tr class="odd">
+<td>Summary Statistics</td>
+<td>Plan to use <code>plotly</code> interactive bar chart</td>
+<td>Shows count of edges by relationship type (e.g., ComposerOf, PerformerOf, etc.).</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>Aggregated metrics update live as filters change.</td>
+</tr>
+</tbody>
+</table>
+<p>Propose outcome of the plots:</p>
+<p><img src="images/clipboard-3903768430.png" class="img-fluid">For the legends, we will also add some interactions into the summary bar chart to find more information for the audience and in order to make more clearly to understand the network, the legends will also show the node types and the edge types for references.</p>
+<p><strong>3.Planned Table Panel: Influence Relationship Details</strong></p>
+<p>Objective</p>
+<p>To provide a tabular view of the filtered influence relationships, allowing users to explore details at a granular level, complementing the network graph.</p>
+<p>Design &amp; Features</p>
+<p>Functionality plan:</p>
+<ul>
+<li><p><strong>Paginated view</strong> with adjustable row count (5, 10, 25, 50, 100)</p></li>
+<li><p><strong>Search bar</strong> for keyword-based filtering (e.g., node name, genre)</p></li>
+<li><p><strong>Sortable columns</strong> for customized sorting (e.g., by release year or relationship type)</p></li>
+</ul>
+<p>Dynamic Interaction</p>
+<ul>
+<li><p>Table will updates in real time based on all applied filters (e.g., node type, genre, year range).</p></li>
+<li><p>Supports detailed exploration and verification of insights observed in the visual graph and summary statistics.</p></li>
+<li><p>Plan to add downloadable CSV export or row click-to-expand options in the future.</p></li>
+</ul>
+<p>Here are the propose skeleton of the first part of the network influence UI design.</p>
+<details>
+<summary>
+UI Design Planning Code
+</summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabItem</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tabName =</span> <span class="st">"influenced"</span><span class="sc">/</span><span class="st">"Impact &amp; Collaborated"</span><span class="sc">/</span><span class="st">"Community influence"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">4</span>, <span class="fu">wellPanel</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="co">#Filter Design</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pickerInput</span>(<span class="st">"node_type"</span>, <span class="st">"Select Node Type"</span>, <span class="at">choices =</span> ...),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pickerInput</span>(<span class="st">"edge_type"</span>, <span class="st">"Select Edge Type"</span>, ...),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">helpText</span>(<span class="fu">tagList</span>(),...),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">radioButtons</span>(<span class="at">inputId =</span> <span class="st">"notable_filter"</span>,...),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pickerInput</span>(<span class="at">inputId =</span> <span class="st">"genre_filter"</span>,<span class="at">label =</span> <span class="st">"Select Genre(s)"</span>,...),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"release_range"</span>, <span class="st">"Release Year Range"</span>, ...),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">actionButton</span>(<span class="st">"release_range_btn"</span>, <span class="st">"Select All Years"</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"network_depth"</span>, <span class="st">"Network Depth"</span>, ...)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    )),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">8</span>, <span class="fu">visNetworkOutput</span>(<span class="st">"directGraph"</span>, <span class="at">height =</span> <span class="st">"700px"</span>,...))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="fu">DTOutput</span>(<span class="st">"directTable"</span>, ...)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell">
+<details>
+<summary>Serve Design Planning Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#1 Dynamic Filtering of Edges and Nodes</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">filtered_edges</span>()         <span class="co"># Filter edges based on network depth and edge type</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">filtered_nodes</span>()         <span class="co"># Filter nodes based on valid IDs and input criteria</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">observe</span>()                <span class="co"># Dynamically update node_name picker choices</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#2 Network Graph Rendering and Interaction</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> output<span class="sc">$</span>directGraph       <span class="co"># Render visNetwork main graph</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">observeEvent</span>(input<span class="sc">$</span>node_name)       <span class="co"># Focus and highlight on selected node</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">observeEvent</span>(input<span class="sc">$</span>notable_filter)  <span class="co"># Highlight nodes based on "Notable" filter</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">#3 Quick Interaction Buttons</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">observeEvent</span>(input<span class="sc">$</span>release_range_btn)     <span class="co"># Reset release year slider to full range</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">observeEvent</span>(input<span class="sc">$</span>network_depth_btn)     <span class="co"># Set network depth to maximum (e.g., 3)</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#4 Data Table Output Section (DT::datatable)</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> output<span class="sc">$</span>directTable       <span class="co"># Display filtered edge data with node names, types, genres, and dates</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">#5 Summary Statistics Visualization Output</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> output<span class="sc">$</span>groupEdgeBarPlot  <span class="co"># Render grouped bar chart (Node Type × Edge Type) using ggplotly</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> output<span class="sc">$</span>barInfo           <span class="co"># Display tooltip text on bar click (plotly_click event)</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+</section>
+<section id="genre-diffusion-panel" class="level4">
+<h4 class="anchored" data-anchor-id="genre-diffusion-panel"><strong>📈 Genre Diffusion Panel</strong></h4>
+<p>Purpose Track the evolution of music genres across time using visual summaries.</p>
+<ul>
+<li><p>Key Features Select and compare genres</p></li>
+<li><p>View stacked area charts or yearly heatmaps</p></li>
+</ul>
+<p>📸 [Insert screenshot of Genre Diffusion Panel] <img src="images/genre_diffusion_placeholder.png" class="img-fluid" style="width:100.0%" alt="Genre Diffusion Screenshot"></p>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabItem</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tabName =</span> <span class="st">"genre"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">4</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pickerInput</span>(<span class="st">"trend_genre"</span>, <span class="st">"Select Genre(s)"</span>, ...),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">dateRangeInput</span>(<span class="st">"trend_year_range"</span>, <span class="st">"Year Range"</span>, ...)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">8</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tabsetPanel</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">"Stacked Area Chart"</span>, <span class="fu">plotlyOutput</span>(<span class="st">"trend_area_plot"</span>)),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">"Yearly Heatmap"</span>, <span class="fu">plotlyOutput</span>(<span class="st">"trend_heatmap"</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</section>
+<section id="talent-radar-panel-purpose" class="level4">
+<h4 class="anchored" data-anchor-id="talent-radar-panel-purpose"><strong>🚀 Talent Radar Panel Purpose</strong></h4>
+<p>Compare emerging artists based on graph features and scoring metrics to identify rising talent in a specific genre.</p>
+<p>Key Features 🎯 Filter by Genre Users can focus on a specific musical style to narrow the artist pool.</p>
+<ul>
+<li><p>🎛 Customizable Score Weights Sliders allow users to adjust the importance of PageRank, Degree Centrality, Style Similarity, and Notable Works — helping tailor the talent score to different discovery goals.</p></li>
+<li><p>📊 Radar Comparison Chart Visually compare up to 5 artists across the 4 scoring dimensions using an interactive radar plot.</p></li>
+<li><p>📋 Scoreboard Table A sortable, downloadable table summarizing talent scores and ranking details.</p></li>
+<li><p>📥 Export Results Allows users to download the scoring results as a CSV for further analysis or reporting.</p></li>
+</ul>
+<p>📸 Talent Radar Panel<img src="images/clipboard-1923199072.png" class="img-fluid"></p>
+<p><img src="images/clipboard-3714433466.png" class="img-fluid"></p>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tabItem</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">tabName =</span> <span class="st">"talent"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">4</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pickerInput</span>(<span class="st">"talent_genre"</span>, <span class="st">"Filter by Genre"</span>, ...),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">uiOutput</span>(<span class="st">"select_compare_artists"</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"weight_pagerank"</span>, <span class="st">"PageRank"</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"weight_degree"</span>, <span class="st">"Degree Centrality"</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"weight_similarity"</span>, <span class="st">"Style Similarity"</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.3</span>),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"weight_notable_count"</span>, <span class="st">"Notable Works Count"</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.2</span>),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">downloadButton</span>(<span class="st">"download_weighted_scores"</span>, <span class="st">"Download CSV"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">8</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tabsetPanel</span>(</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">"Radar Comparison"</span>, <span class="fu">plotlyOutput</span>(<span class="st">"talent_radar_plot"</span>)),</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tabPanel</span>(<span class="st">"Scoreboard"</span>, <span class="fu">DTOutput</span>(<span class="st">"talent_score_table"</span>))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</section>
+<section id="trend-dashboard-panel" class="level4">
+<h4 class="anchored" data-anchor-id="trend-dashboard-panel"><strong>📊 Trend Dashboard Panel</strong></h4>
+<p>Purpose Enable high-level insights export and macro filtering across all trends.</p>
+<ul>
+<li><p>Key Features Select multiple genres</p></li>
+<li><p>Choose analysis layers (e.g., cumulative, normalized)</p></li>
+<li><p>Export raw data as CSV</p></li>
+</ul>
+<p>📸 [Insert screenshot of Trend Dashboard Panel] <img src="images/trend_dashboard_placeholder.png" class="img-fluid" style="width:100.0%" alt="Trend Dashboard Screenshot"></p>
+<details>
+<summary>
+Show code
+</summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabItem</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tabName =</span> <span class="st">"trend"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">4</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">pickerInput</span>(<span class="st">"trend_genre"</span>, <span class="st">"Select Genre(s)"</span>, ...),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">checkboxGroupInput</span>(<span class="st">"trend_layers"</span>, <span class="st">"Show Layers"</span>, <span class="at">choices =</span> ...),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">downloadButton</span>(<span class="st">"download_trend_data"</span>, <span class="st">"Export Trend Data"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">8</span>, <span class="fu">plotlyOutput</span>(<span class="st">"trend_area_plot"</span>))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</section>
+</section>
+</section>
+</section>
+<section id="implementation-summary" class="level1">
+<h1>📌 Implementation Summary</h1>
+<p>This section provides a consolidated reflection on the analytical visualisation development process, in accordance with the assignment requirements.</p>
+<hr>
+<section id="data-preparation-process" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation-process">🔧 Data Preparation Process</h2>
+<p>All data was sourced from the preprocessed knowledge graph file <code>MC1_graph.json</code>, which includes metadata on artists, albums, songs, relationships, and genre tags.</p>
+<p>The following steps were taken to prepare the data for each module:</p>
+<ul>
+<li><strong>Node &amp; edge extraction</strong>: Parsed using <code>jsonlite::fromJSON()</code>, then converted into tibbles.</li>
+<li><strong>Graph analysis</strong>: Centrality metrics such as PageRank and degree were computed using <code>tidygraph</code>.</li>
+<li><strong>Similarity calculation</strong>: Genre-based cosine similarity was computed between artists for the Talent Radar module.</li>
+<li><strong>Filtering and transformation</strong>: Date fields were converted using <code>lubridate</code>, and filters (e.g., by genre, year) were handled reactively in Shiny server logic.</li>
+</ul>
+<hr>
+</section>
+<section id="selection-of-data-visualisation-techniques" class="level2">
+<h2 class="anchored" data-anchor-id="selection-of-data-visualisation-techniques">📊 Selection of Data Visualisation Techniques</h2>
+<p>To ensure clarity, expressiveness, and interactivity, the following techniques and R packages were selected:</p>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 41%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Technique</th>
+<th>Package(s) Used</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Influence Graph</strong></td>
+<td>Interactive network graph</td>
+<td><code>visNetwork</code></td>
+</tr>
+<tr class="even">
+<td><strong>Genre Diffusion</strong></td>
+<td>Stacked area chart &amp; heatmap</td>
+<td><code>plotly</code>, <code>ggplot2</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Talent Radar</strong></td>
+<td>Radar chart &amp; data table</td>
+<td><code>plotly</code>, <code>DT</code></td>
+</tr>
+<tr class="even">
+<td><strong>Trend Dashboard</strong></td>
+<td>Layered area chart</td>
+<td><code>plotly</code></td>
+</tr>
+</tbody>
+</table>
+<p>These techniques were chosen for their ability to handle temporal, categorical, and relational data intuitively.</p>
+<hr>
+</section>
+<section id="visual-design-interactivity-principles" class="level2">
+<h2 class="anchored" data-anchor-id="visual-design-interactivity-principles">🎨 Visual Design &amp; Interactivity Principles</h2>
+<p>The dashboard was designed with the following visual and usability principles in mind:</p>
+<ul>
+<li><strong>Consistency</strong>: Unified layout using <code>shinydashboard::tabItem</code>, ensuring visual coherence.</li>
+<li><strong>User control</strong>: Users can dynamically filter data by genre, year, and depth, and adjust scoring weights via sliders.</li>
+<li><strong>Immediate feedback</strong>: Selections instantly update charts and tables to support exploratory analysis.</li>
+<li><strong>Exportability</strong>: Download buttons allow users to retrieve data insights for external use.</li>
+<li><strong>Best practices</strong>: Titles, legends, and axes were included where appropriate to enhance interpretability.</li>
+</ul>
+<p>Overall, the application supports both high-level pattern recognition and detailed artist-level analysis in an accessible and interactive format.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="./index.html">© 2025 EchoScope Project - Built with ❤️ using Shiny &amp; Quarto</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
