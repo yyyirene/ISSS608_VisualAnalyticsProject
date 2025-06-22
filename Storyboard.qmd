@@ -1,6 +1,6 @@
 ---
 title: "EchoScope™ Prototype Storyboard"
-author: "Team Visual Analytics"
+author: "Group 16"
 date: "`r Sys.Date()`"
 format:
   html:
