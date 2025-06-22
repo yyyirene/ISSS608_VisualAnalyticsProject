@@ -541,7 +541,7 @@ Show code
 <p>Here are the propose skeleton of the first part of the network influence UI design.</p>
 <details>
 <summary>
-UI Design Planning Code
+UI Design + Server Planning Code
 </summary>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabItem</span>(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tabName =</span> <span class="st">"influenced"</span><span class="sc">/</span><span class="st">"Impact &amp; Collaborated"</span><span class="sc">/</span><span class="st">"Community influence"</span>,</span>
@@ -560,8 +560,39 @@ UI Design Planning Code
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">8</span>, <span class="fu">visNetworkOutput</span>(<span class="st">"directGraph"</span>, <span class="at">height =</span> <span class="st">"700px"</span>,...))</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="fu">DTOutput</span>(<span class="st">"directTable"</span>, ...)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>   )</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">#1 Dynamic Filtering of Edges and Nodes</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">filtered_edges</span>()         <span class="co"># Filter edges based on network depth and edge type</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">filtered_nodes</span>()         <span class="co"># Filter nodes based on valid IDs and input criteria</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">observe</span>()                <span class="co"># Dynamically update node_name picker choices</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">#2 Network Graph Rendering and Interaction</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> output<span class="sc">$</span>directGraph       <span class="co"># Render visNetwork main graph</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">observeEvent</span>(input<span class="sc">$</span>node_name)       <span class="co"># Focus and highlight on selected node</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">observeEvent</span>(input<span class="sc">$</span>notable_filter)  <span class="co"># Highlight nodes based on "Notable" filter</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">#3 Quick Interaction Buttons</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">observeEvent</span>(input<span class="sc">$</span>release_range_btn)     <span class="co"># Reset release year slider to full range</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> <span class="fu">observeEvent</span>(input<span class="sc">$</span>network_depth_btn)     <span class="co"># Set network depth to maximum (e.g., 3)</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="co">#4 Data Table Output Section (DT::datatable)</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> output<span class="sc">$</span>directTable       <span class="co"># Display filtered edge data with node names, types, genres, and dates</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="co">#5 Summary Statistics Visualization Output</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> output<span class="sc">$</span>groupEdgeBarPlot  <span class="co"># Render grouped bar chart (Node Type × Edge Type) using ggplotly</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span> output<span class="sc">$</span>barInfo           <span class="co"># Display tooltip text on bar click (plotly_click event)</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <hr>
 </section>
@@ -653,7 +684,7 @@ Export the complete weighted scores dataset for offline analysis or reporting.</
 <p><img src="images/clipboard-3714433466.png" class="img-fluid"></p>
 <details>
 <summary>
-Show code
+UI Design + Server Planning Code
 </summary>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tabItem</span>(</span>
@@ -689,7 +720,7 @@ Show code
 <p>📸 Screenshot of Trend Dashboard Panel<img src="images/clipboard-2720527067.png" class="img-fluid"></p>
 <details>
 <summary>
-Show code
+UI Design + Server Planning Code
 </summary>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tabItem</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tabName =</span> <span class="st">"trend"</span>,</span>
