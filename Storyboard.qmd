@@ -406,8 +406,11 @@ This stacked area chart visualizes how different genres have been influenced by 
 - **Fill Color**: Receiving genre
 
 **Insights Provided:**
+
 - Observe stylistic waves: Is influence steady, or does it spike in certain periods?
+
 - Detect genre surges: Which genres became more prominent over time due to Oceanus Folk?
+
 - Study response lag: How long after *Oceanus Folk*’s rise did other genres begin to echo it?
 
 The **year slider** narrows the temporal scope for closer inspection.
@@ -422,8 +425,11 @@ This network graph visualizes works and genres influenced by *Oceanus Folk*.
 - **Hop Depth**: 1-hop shows immediate connections; 2-hop expands to indirect pathways
 
 **Insights Provided:**
+
 - See structural spread: Starburst (centralized) vs Chain (progressive) diffusion
+
 - Discover genre bridges: Nodes that link distant styles
+
 - Analyze neighborhood scope: How far does Oceanus Folk’s influence travel?
 
 Clicking a node reveals more info in the **detail panel**.
@@ -439,8 +445,11 @@ This section updates when a node is selected in the network or Sankey diagram.
 - **Sailor Shift Connection**: Whether the node has a collaboration or stylistic link with *Sailor Shift*
 
 **Purpose:**
+
 - Enable deep-dives into specific works
+
 - Connect micro-level detail with macro-level diffusion patterns
+
 - Support contextual storytelling around influential pieces or collaborators
 
 ## ⑤ Center Panel Bottom: Genre Influence Backflow (Sankey Diagram)
@@ -452,8 +461,11 @@ This Sankey diagram shows *reverse influence* — how other genres influenced Oc
 - **Link Width**: Frequency or weight of connections
 
 **Insights Provided:**
+
 - Uncover external roots: What genres shaped Oceanus Folk’s evolution?
+
 - Spot dominant contributors: Are there a few strong influencers or many subtle ones?
+
 - Explore bidirectional influence: Music genres are not static — Oceanus Folk both influences and is influenced.
 
 This module highlights how cultural exchange reshapes a genre over time.
@@ -469,8 +481,11 @@ This section updates when a node is selected in the network or Sankey diagram.
 - **Sailor Shift Connection**: Whether the node has a collaboration or stylistic link with *Sailor Shift*
 
 **Purpose:**
+
 - Enable deep-dives into specific works
+
 - Connect micro-level detail with macro-level diffusion patterns
+
 - Support contextual storytelling around influential pieces or collaborators
 
 
