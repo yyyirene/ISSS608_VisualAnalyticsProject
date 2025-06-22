@@ -372,126 +372,123 @@ server <- function(input, output, session) {
 
 ## **📈 Genre Diffusion Panel**
 
-### 🎯 Module Purpose
+**🎯 Module Purpose**
 
 This module explores how the genre **Oceanus Folk** has influenced the creation and spread of songs and albums over time. Using a dynamic network and Sankey diagram, we visualize **genre diffusion pathways**, including **direct and indirect influence**, along with their **temporal evolution**.
 
 > 📝 *Use case:* A music analyst or cultural researcher can trace how Oceanus Folk catalyzed the emergence of related genres, artists, and works across decades.
 
----
+------------------------------------------------------------------------
 
-### 🧭 Interface Overview
-📸
-![](images/Genre_Diffusion2.png)
+**🧭 Interface Overview**
+
+📸 Screenshot of Genre Diffusion Panel![](images/Genre_Diffusion2.png)
 
 ![](images/Genre_Diffusion1.png)
 
-## ① Left Panel: Control Inputs
+**① Left Panel: Control Inputs**
 
 This panel allows users to refine the visualization by setting key filters:
 
-- **Main Genre Selector**: Defaults to *Oceanus Folk*. Users can switch to explore other genres if applicable.
-- **Year Range Slider**: Restricts the dataset by release year to focus on specific time windows.
-- **Node Type Selector**: Filters the visualization to show only *Song* or *Album* nodes (ignores irrelevant types like *Person*).
-- **Hop Depth (1-hop / 2-hop)**: Determines the depth of network exploration from the main genre (direct vs indirect influence).
+-   **Main Genre Selector**: Defaults to *Oceanus Folk*. Users can switch to explore other genres if applicable.
+-   **Year Range Slider**: Restricts the dataset by release year to focus on specific time windows.
+-   **Node Type Selector**: Filters the visualization to show only *Song* or *Album* nodes (ignores irrelevant types like *Person*).
+-   **Hop Depth (1-hop / 2-hop)**: Determines the depth of network exploration from the main genre (direct vs indirect influence).
 
 These inputs dynamically control the center visualizations to support targeted analysis.
 
-## ② Center Panel Top: Timeline Trend Panel
+**② Center Panel Top: Timeline Trend Panel**
 
 This stacked area chart visualizes how different genres have been influenced by *Oceanus Folk* over time.
 
-- **X-axis**: Year of release  
-- **Y-axis**: Number of works influenced  
-- **Fill Color**: Receiving genre
+-   **X-axis**: Year of release\
+-   **Y-axis**: Number of works influenced\
+-   **Fill Color**: Receiving genre
 
 **Insights Provided:**
 
-- Observe stylistic waves: Is influence steady, or does it spike in certain periods?
+-   Observe stylistic waves: Is influence steady, or does it spike in certain periods?
 
-- Detect genre surges: Which genres became more prominent over time due to Oceanus Folk?
+-   Detect genre surges: Which genres became more prominent over time due to Oceanus Folk?
 
-- Study response lag: How long after *Oceanus Folk*’s rise did other genres begin to echo it?
+-   Study response lag: How long after *Oceanus Folk*’s rise did other genres begin to echo it?
 
 The **year slider** narrows the temporal scope for closer inspection.
 
-## ③ Center Panel Middle: Genre Influence Network
+**③ Center Panel Middle: Genre Influence Network**
 
 This network graph visualizes works and genres influenced by *Oceanus Folk*.
 
-- **Nodes**: Songs or albums with genre tags  
-- **Edges**: Influence links (e.g., stylistic references, covers)  
-- **Grouping**: Nodes colored by genre  
-- **Hop Depth**: 1-hop shows immediate connections; 2-hop expands to indirect pathways
+-   **Nodes**: Songs or albums with genre tags\
+-   **Edges**: Influence links (e.g., stylistic references, covers)\
+-   **Grouping**: Nodes colored by genre\
+-   **Hop Depth**: 1-hop shows immediate connections; 2-hop expands to indirect pathways
 
 **Insights Provided:**
 
-- See structural spread: Starburst (centralized) vs Chain (progressive) diffusion
+-   See structural spread: Starburst (centralized) vs Chain (progressive) diffusion
 
-- Discover genre bridges: Nodes that link distant styles
+-   Discover genre bridges: Nodes that link distant styles
 
-- Analyze neighborhood scope: How far does Oceanus Folk’s influence travel?
+-   Analyze neighborhood scope: How far does Oceanus Folk’s influence travel?
 
 Clicking a node reveals more info in the **detail panel**.
 
-## ④  Right Panel: Detail Panel
+**④ Right Panel: Detail Panel**
 
 This section updates when a node is selected in the network or Sankey diagram.
 
-**Details shown:**
-- **Name** of the node (song or album)  
-- **Representative Works** (if available)  
-- **Active Year** (release year)  
+**Details shown:** - **Name** of the node (song or album)\
+- **Representative Works** (if available)\
+- **Active Year** (release year)\
 - **Sailor Shift Connection**: Whether the node has a collaboration or stylistic link with *Sailor Shift*
 
 **Purpose:**
 
-- Enable deep-dives into specific works
+-   Enable deep-dives into specific works
 
-- Connect micro-level detail with macro-level diffusion patterns
+-   Connect micro-level detail with macro-level diffusion patterns
 
-- Support contextual storytelling around influential pieces or collaborators
+-   Support contextual storytelling around influential pieces or collaborators
 
-## ⑤ Center Panel Bottom: Genre Influence Backflow (Sankey Diagram)
+**⑤ Center Panel Bottom: Genre Influence Backflow (Sankey Diagram)**
 
 This Sankey diagram shows *reverse influence* — how other genres influenced Oceanus Folk.
 
-- **Source**: External genres (e.g., Jazz, Psychedelic)  
-- **Target**: Oceanus Folk  
-- **Link Width**: Frequency or weight of connections
+-   **Source**: External genres (e.g., Jazz, Psychedelic)\
+-   **Target**: Oceanus Folk\
+-   **Link Width**: Frequency or weight of connections
 
 **Insights Provided:**
 
-- Uncover external roots: What genres shaped Oceanus Folk’s evolution?
+-   Uncover external roots: What genres shaped Oceanus Folk’s evolution?
 
-- Spot dominant contributors: Are there a few strong influencers or many subtle ones?
+-   Spot dominant contributors: Are there a few strong influencers or many subtle ones?
 
-- Explore bidirectional influence: Music genres are not static — Oceanus Folk both influences and is influenced.
+-   Explore bidirectional influence: Music genres are not static — Oceanus Folk both influences and is influenced.
 
 This module highlights how cultural exchange reshapes a genre over time.
 
-## ⑤ Right Panel: Detail Panel
+**⑤ Right Panel: Detail Panel**
 
 This section updates when a node is selected in the network or Sankey diagram.
 
-**Details shown:**
-- **Name** of the node (song or album)  
-- **Representative Works** (if available)  
-- **Active Year** (release year)  
+**Details shown:** - **Name** of the node (song or album)\
+- **Representative Works** (if available)\
+- **Active Year** (release year)\
 - **Sailor Shift Connection**: Whether the node has a collaboration or stylistic link with *Sailor Shift*
 
 **Purpose:**
 
-- Enable deep-dives into specific works
+-   Enable deep-dives into specific works
 
-- Connect micro-level detail with macro-level diffusion patterns
+-   Connect micro-level detail with macro-level diffusion patterns
 
-- Support contextual storytelling around influential pieces or collaborators
-
+-   Support contextual storytelling around influential pieces or collaborators
 
 <details>
 
-<summary>Show code</summary>
+<summary>UI Design + Server Planning Code</summary>
 
 ``` r
     tabItem(tabName = "genre",
@@ -807,7 +804,7 @@ tabItem(
 
 ------------------------------------------------------------------------
 
-#### **📊 Trend Dashboard Panel**
+## **📊 Trend Dashboard Panel**
 
 Purpose Enable high-level insights export and macro filtering across all trends.
 
