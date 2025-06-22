@@ -181,11 +181,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#module-purpose" id="toc-module-purpose" class="nav-link" data-scroll-target="#module-purpose">🎯 Module Purpose</a></li>
   <li><a href="#interface-overview" id="toc-interface-overview" class="nav-link" data-scroll-target="#interface-overview">🧭 Interface Overview</a></li>
-  <li><a href="#timeline-trend" id="toc-timeline-trend" class="nav-link" data-scroll-target="#timeline-trend">📈 Timeline Trend</a></li>
-  <li><a href="#genre-influence-network" id="toc-genre-influence-network" class="nav-link" data-scroll-target="#genre-influence-network">🌐 Genre Influence Network</a></li>
-  <li><a href="#genre-influence-backflow-sankey-diagram" id="toc-genre-influence-backflow-sankey-diagram" class="nav-link" data-scroll-target="#genre-influence-backflow-sankey-diagram">🔁 Genre Influence Backflow (Sankey Diagram)</a></li>
-  <li><a href="#detail-panel-right" id="toc-detail-panel-right" class="nav-link" data-scroll-target="#detail-panel-right">📑 Detail Panel (Right)</a></li>
   </ul></li>
+  <li><a href="#left-panel-control-inputs" id="toc-left-panel-control-inputs" class="nav-link" data-scroll-target="#left-panel-control-inputs">① Left Panel: Control Inputs</a></li>
+  <li><a href="#center-panel-top-timeline-trend-panel" id="toc-center-panel-top-timeline-trend-panel" class="nav-link" data-scroll-target="#center-panel-top-timeline-trend-panel">② Center Panel Top: Timeline Trend Panel</a></li>
+  <li><a href="#center-panel-middle-genre-influence-network" id="toc-center-panel-middle-genre-influence-network" class="nav-link" data-scroll-target="#center-panel-middle-genre-influence-network">③ Center Panel Middle: Genre Influence Network</a></li>
+  <li><a href="#right-panel-detail-panel" id="toc-right-panel-detail-panel" class="nav-link" data-scroll-target="#right-panel-detail-panel">④ Right Panel: Detail Panel</a></li>
+  <li><a href="#center-panel-bottom-genre-influence-backflow-sankey-diagram" id="toc-center-panel-bottom-genre-influence-backflow-sankey-diagram" class="nav-link" data-scroll-target="#center-panel-bottom-genre-influence-backflow-sankey-diagram">⑤ Center Panel Bottom: Genre Influence Backflow (Sankey Diagram)</a></li>
+  <li><a href="#right-panel-detail-panel-1" id="toc-right-panel-detail-panel-1" class="nav-link" data-scroll-target="#right-panel-detail-panel-1">⑤ Right Panel: Detail Panel</a></li>
   <li><a href="#talent-radar-panel" id="toc-talent-radar-panel" class="nav-link" data-scroll-target="#talent-radar-panel"><strong>🚀 Talent Radar Panel</strong></a></li>
   </ul></li>
   </ul>
@@ -625,90 +627,79 @@ UI Design + Server Planning Code
 </section>
 <section id="interface-overview" class="level3">
 <h3 class="anchored" data-anchor-id="interface-overview">🧭 Interface Overview</h3>
-<p><strong>Control Panel (Left Panel):</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 38%">
-<col style="width: 61%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Element</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Main Genre</strong></td>
-<td>Select the root genre to track its influence (default is <em>Oceanus Folk</em>)</td>
-</tr>
-<tr class="even">
-<td><strong>Year Range</strong></td>
-<td>Filter nodes by release year</td>
-</tr>
-<tr class="odd">
-<td><strong>Node Type</strong></td>
-<td>Focus on either <em>Song</em> or <em>Album</em> nodes</td>
-</tr>
-<tr class="even">
-<td><strong>Influence Path Depth</strong></td>
-<td>Choose between <strong>1-hop</strong> (direct influence) and <strong>2-hop</strong> (indirect influence paths)</td>
-</tr>
-</tbody>
-</table>
-<p>📸<img src="images/Genre_Diffusion_Control_Panel.png" class="img-fluid"></p>
-<hr>
+<p>📸 <img src="images/Genre_Diffusion2.png" class="img-fluid"></p>
+<p><img src="images/Genre_Diffusion1.png" class="img-fluid"></p>
 </section>
-<section id="timeline-trend" class="level3">
-<h3 class="anchored" data-anchor-id="timeline-trend">📈 Timeline Trend</h3>
-<p>This area plot shows how many songs/albums (grouped by genre) were influenced by the selected genre over time.</p>
+</section>
+<section id="left-panel-control-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="left-panel-control-inputs">① Left Panel: Control Inputs</h2>
+<p>This panel allows users to refine the visualization by setting key filters:</p>
 <ul>
-<li><strong>X-axis:</strong> Release year<br>
+<li><strong>Main Genre Selector</strong>: Defaults to <em>Oceanus Folk</em>. Users can switch to explore other genres if applicable.</li>
+<li><strong>Year Range Slider</strong>: Restricts the dataset by release year to focus on specific time windows.</li>
+<li><strong>Node Type Selector</strong>: Filters the visualization to show only <em>Song</em> or <em>Album</em> nodes (ignores irrelevant types like <em>Person</em>).</li>
+<li><strong>Hop Depth (1-hop / 2-hop)</strong>: Determines the depth of network exploration from the main genre (direct vs indirect influence).</li>
+</ul>
+<p>These inputs dynamically control the center visualizations to support targeted analysis.</p>
+</section>
+<section id="center-panel-top-timeline-trend-panel" class="level2">
+<h2 class="anchored" data-anchor-id="center-panel-top-timeline-trend-panel">② Center Panel Top: Timeline Trend Panel</h2>
+<p>This stacked area chart visualizes how different genres have been influenced by <em>Oceanus Folk</em> over time.</p>
+<ul>
+<li><strong>X-axis</strong>: Year of release<br>
 </li>
-<li><strong>Y-axis:</strong> Number of influenced works<br>
+<li><strong>Y-axis</strong>: Number of works influenced<br>
 </li>
-<li><strong>Color:</strong> Genre of influenced works</li>
+<li><strong>Fill Color</strong>: Receiving genre</li>
 </ul>
-<p>Use this chart to identify <strong>temporal spikes</strong> in influence and <strong>genre-specific waves</strong>.</p>
-<p>📸<img src="images/Genre_Diffusion_Time_Trend.png" class="img-fluid"></p>
-<hr>
+<p><strong>Insights Provided:</strong> - Observe stylistic waves: Is influence steady, or does it spike in certain periods? - Detect genre surges: Which genres became more prominent over time due to Oceanus Folk? - Study response lag: How long after <em>Oceanus Folk</em>’s rise did other genres begin to echo it?</p>
+<p>The <strong>year slider</strong> narrows the temporal scope for closer inspection.</p>
 </section>
-<section id="genre-influence-network" class="level3">
-<h3 class="anchored" data-anchor-id="genre-influence-network">🌐 Genre Influence Network</h3>
-<p>A visNetwork graph showing <strong>nodes (songs/albums)</strong> connected by influence edges. This visual helps identify:</p>
+<section id="center-panel-middle-genre-influence-network" class="level2">
+<h2 class="anchored" data-anchor-id="center-panel-middle-genre-influence-network">③ Center Panel Middle: Genre Influence Network</h2>
+<p>This network graph visualizes works and genres influenced by <em>Oceanus Folk</em>.</p>
 <ul>
-<li><p>Which works are <strong>directly influenced</strong> by the selected genre</p></li>
-<li><p>Which works are <strong>central hubs</strong> of propagation</p></li>
-<li><p><strong>Clusters</strong> of genre influence across time</p></li>
-<li><p>Nodes are colored by genre</p></li>
-<li><p>Hovering shows detailed metadata (release year, notable, etc.)</p></li>
-<li><p>Clicking a node will update the <strong>Detail Panel</strong></p></li>
-</ul>
-<p>📸<img src="images/Genre_Diffusion_Influence_Network.png" class="img-fluid"></p>
-<hr>
-</section>
-<section id="genre-influence-backflow-sankey-diagram" class="level3">
-<h3 class="anchored" data-anchor-id="genre-influence-backflow-sankey-diagram">🔁 Genre Influence Backflow (Sankey Diagram)</h3>
-<p>This Sankey diagram illustrates the <strong>reverse influence</strong> — how other genres eventually influenced the main genre.</p>
-<ul>
-<li><strong>FromGenre → Oceanus Folk</strong><br>
+<li><strong>Nodes</strong>: Songs or albums with genre tags<br>
 </li>
-<li>Each link represents a <strong>count of influence relationships</strong></li>
+<li><strong>Edges</strong>: Influence links (e.g., stylistic references, covers)<br>
+</li>
+<li><strong>Grouping</strong>: Nodes colored by genre<br>
+</li>
+<li><strong>Hop Depth</strong>: 1-hop shows immediate connections; 2-hop expands to indirect pathways</li>
 </ul>
-<p>This helps capture <strong>genre convergence</strong> and artistic borrowing across time.</p>
-<p>📸<img src="images/Genre_Diffusion _Influence_Backflow.png" class="img-fluid"></p>
-<hr>
+<p><strong>Insights Provided:</strong> - See structural spread: Starburst (centralized) vs Chain (progressive) diffusion - Discover genre bridges: Nodes that link distant styles - Analyze neighborhood scope: How far does Oceanus Folk’s influence travel?</p>
+<p>Clicking a node reveals more info in the <strong>detail panel</strong>.</p>
 </section>
-<section id="detail-panel-right" class="level3">
-<h3 class="anchored" data-anchor-id="detail-panel-right">📑 Detail Panel (Right)</h3>
-<p>When a node is selected in the Network or Sankey diagram, this panel displays:</p>
+<section id="right-panel-detail-panel" class="level2">
+<h2 class="anchored" data-anchor-id="right-panel-detail-panel">④ Right Panel: Detail Panel</h2>
+<p>This section updates when a node is selected in the network or Sankey diagram.</p>
+<p><strong>Details shown:</strong> - <strong>Name</strong> of the node (song or album)<br>
+- <strong>Representative Works</strong> (if available)<br>
+- <strong>Active Year</strong> (release year)<br>
+- <strong>Sailor Shift Connection</strong>: Whether the node has a collaboration or stylistic link with <em>Sailor Shift</em></p>
+<p><strong>Purpose:</strong> - Enable deep-dives into specific works - Connect micro-level detail with macro-level diffusion patterns - Support contextual storytelling around influential pieces or collaborators</p>
+</section>
+<section id="center-panel-bottom-genre-influence-backflow-sankey-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="center-panel-bottom-genre-influence-backflow-sankey-diagram">⑤ Center Panel Bottom: Genre Influence Backflow (Sankey Diagram)</h2>
+<p>This Sankey diagram shows <em>reverse influence</em> — how other genres influenced Oceanus Folk.</p>
 <ul>
-<li>Name</li>
-<li>Representative Works</li>
-<li>Active Year</li>
-<li>Whether it shares collaboration or style with <em>Sailor Shift</em></li>
+<li><strong>Source</strong>: External genres (e.g., Jazz, Psychedelic)<br>
+</li>
+<li><strong>Target</strong>: Oceanus Folk<br>
+</li>
+<li><strong>Link Width</strong>: Frequency or weight of connections</li>
 </ul>
-<p>📸<img src="images/Genre_Diffusion_Detail_Panel.png" class="img-fluid"></p>
+<p><strong>Insights Provided:</strong> - Uncover external roots: What genres shaped Oceanus Folk’s evolution? - Spot dominant contributors: Are there a few strong influencers or many subtle ones? - Explore bidirectional influence: Music genres are not static — Oceanus Folk both influences and is influenced.</p>
+<p>This module highlights how cultural exchange reshapes a genre over time.</p>
+</section>
+<section id="right-panel-detail-panel-1" class="level2">
+<h2 class="anchored" data-anchor-id="right-panel-detail-panel-1">⑤ Right Panel: Detail Panel</h2>
+<p>This section updates when a node is selected in the network or Sankey diagram.</p>
+<p><strong>Details shown:</strong> - <strong>Name</strong> of the node (song or album)<br>
+- <strong>Representative Works</strong> (if available)<br>
+- <strong>Active Year</strong> (release year)<br>
+- <strong>Sailor Shift Connection</strong>: Whether the node has a collaboration or stylistic link with <em>Sailor Shift</em></p>
+<p><strong>Purpose:</strong> - Enable deep-dives into specific works - Connect micro-level detail with macro-level diffusion patterns - Support contextual storytelling around influential pieces or collaborators</p>
 <details>
 <summary>
 Show code
@@ -929,7 +920,6 @@ Show code
 <span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <hr>
-</section>
 </section>
 <section id="talent-radar-panel" class="level2">
 <h2 class="anchored" data-anchor-id="talent-radar-panel"><strong>🚀 Talent Radar Panel</strong></h2>
