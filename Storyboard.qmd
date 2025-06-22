@@ -244,15 +244,15 @@ Objective : To empower users to efficiently explore and narrow down the influenc
 
 Planned Filter Components & Intended Functionality
 
-| Filter                                   | User Interaction                                              | Planned Purpose                                                                    |
+| Filter | User Interaction | Planned Purpose |
 |------------------------|------------------------|------------------------|
-| Select Node Type                         | Multi-select (e.g., Album, Person, Song, RecordLabel, etc.)   | Filters the network to show only selected entity types as nodes.                   |
-| Search Node Name                         | Dropdown or typeahead search (e.g., "Brooke Olson")           | Focuses the network graph on the selected node, zooming in automatically.          |
-| Select Edge Type                         | Multi-select (e.g., ComposerOf, Interpolates, etc.)           | Filters edges by relationship type to limit visual noise and highlight key links.  |
-| Is Notable?                              | Radio buttons (All / TRUE / FALSE)                            | Filters nodes by whether they are tagged as “notable” to emphasize known artists.  |
-| Select Genre(s)                          | Multi-select (e.g., Alternative Rock, Avant-Garde Folk, etc.) | Enables genre-based filtering to tailor the view to specific music categories.     |
-| Release Year Range                       | Range slider (1983–2038) + "Select All Years" button          | Restricts nodes by their associated release year, helping with temporal filtering. |
-| Select Network Depth (from Sailor Shift) | Range slider (1–3) + "Select All network" button              | Controls how many layers of influence (direct and indirect) are displayed.         |
+| Select Node Type | Multi-select (e.g., Album, Person, Song, RecordLabel, etc.) | Filters the network to show only selected entity types as nodes. |
+| Search Node Name | Dropdown or typeahead search (e.g., "Brooke Olson") | Focuses the network graph on the selected node, zooming in automatically. |
+| Select Edge Type | Multi-select (e.g., ComposerOf, Interpolates, etc.) | Filters edges by relationship type to limit visual noise and highlight key links. |
+| Is Notable? | Radio buttons (All / TRUE / FALSE) | Filters nodes by whether they are tagged as “notable” to emphasize known artists. |
+| Select Genre(s) | Multi-select (e.g., Alternative Rock, Avant-Garde Folk, etc.) | Enables genre-based filtering to tailor the view to specific music categories. |
+| Release Year Range | Range slider (1983–2038) + "Select All Years" button | Restricts nodes by their associated release year, helping with temporal filtering. |
+| Select Network Depth (from Sailor Shift) | Range slider (1–3) + "Select All network" button | Controls how many layers of influence (direct and indirect) are displayed. |
 
 Interaction Design Considerations
 
@@ -270,14 +270,14 @@ To dynamically visualize Sailor Shift's influence network and provide quantitati
 
 Network Plot & Summary plan
 
-|                    |                                            |                                                                                     |
+|  |  |  |
 |-------------------|-----------------------|------------------------------|
-| Tab                | Content Type                               | Planned Interaction                                                                 |
-| Influence Network  | Plan to use`visNetwork` graph              | Displays a dynamic node-link network showing direct and indirect influence.         |
-|                    |                                            | Hover reveals details; click highlights sub-network.                                |
-|                    |                                            | Responds in real time to filters in the left panel (node type, genre, years, etc.). |
-| Summary Statistics | Plan to use `plotly` interactive bar chart | Shows count of edges by relationship type (e.g., ComposerOf, PerformerOf, etc.).    |
-|                    |                                            | Aggregated metrics update live as filters change.                                   |
+| Tab | Content Type | Planned Interaction |
+| Influence Network | Plan to use`visNetwork` graph | Displays a dynamic node-link network showing direct and indirect influence. |
+|  |  | Hover reveals details; click highlights sub-network. |
+|  |  | Responds in real time to filters in the left panel (node type, genre, years, etc.). |
+| Summary Statistics | Plan to use `plotly` interactive bar chart | Shows count of edges by relationship type (e.g., ComposerOf, PerformerOf, etc.). |
+|  |  | Aggregated metrics update live as filters change. |
 
 Propose outcome of the plots:
 
@@ -372,34 +372,302 @@ server <- function(input, output, session) {
 
 ## **📈 Genre Diffusion Panel**
 
-Purpose Track the evolution of music genres across time using visual summaries.
+### 🎯 Module Purpose
 
--   Key Features Select and compare genres
+This module explores how the genre **Oceanus Folk** has influenced the creation and spread of songs and albums over time. Using a dynamic network and Sankey diagram, we visualize **genre diffusion pathways**, including **direct and indirect influence**, along with their **temporal evolution**.
 
--   View stacked area charts or yearly heatmaps
+> 📝 *Use case:* A music analyst or cultural researcher can trace how Oceanus Folk catalyzed the emergence of related genres, artists, and works across decades.
 
-📸 \[Insert screenshot of Genre Diffusion Panel\] ![Genre Diffusion Screenshot](images/genre_diffusion_placeholder.png){width="100%"}
+---
+
+### 🧭 Interface Overview
+
+**Control Panel (Left Panel):**
+
+| Element | Description |
+|--------|-------------|
+| **Main Genre** | Select the root genre to track its influence (default is *Oceanus Folk*) |
+| **Year Range** | Filter nodes by release year |
+| **Node Type** | Focus on either *Song* or *Album* nodes |
+| **Influence Path Depth** | Choose between **1-hop** (direct influence) and **2-hop** (indirect influence paths) |
+
+📸![](images/Genre_Diffusion_Control_Panel.png)
+
+---
+
+### 📈 Timeline Trend
+
+This area plot shows how many songs/albums (grouped by genre) were influenced by the selected genre over time.
+
+- **X-axis:** Release year  
+- **Y-axis:** Number of influenced works  
+- **Color:** Genre of influenced works
+
+Use this chart to identify **temporal spikes** in influence and **genre-specific waves**.
+
+📸![](images/Genre_Diffusion_Time_Trend.png)
+
+---
+
+### 🌐 Genre Influence Network
+
+A visNetwork graph showing **nodes (songs/albums)** connected by influence edges. This visual helps identify:
+
+- Which works are **directly influenced** by the selected genre
+- Which works are **central hubs** of propagation
+- **Clusters** of genre influence across time
+
+- Nodes are colored by genre
+- Hovering shows detailed metadata (release year, notable, etc.)
+- Clicking a node will update the **Detail Panel**
+
+📸![](images/Genre_Diffusion_Influence_Network.png)
+
+---
+
+### 🔁 Genre Influence Backflow (Sankey Diagram)
+
+This Sankey diagram illustrates the **reverse influence** — how other genres eventually influenced the main genre.
+
+- **FromGenre → Oceanus Folk**  
+- Each link represents a **count of influence relationships**
+
+This helps capture **genre convergence** and artistic borrowing across time.
+
+📸![](images/Genre_Diffusion _Influence_Backflow.png)
+
+---
+
+### 📑 Detail Panel (Right)
+
+When a node is selected in the Network or Sankey diagram, this panel displays:
+
+- Name
+- Representative Works
+- Active Year
+- Whether it shares collaboration or style with *Sailor Shift*
+
+📸![](images/Genre_Diffusion_Detail_Panel.png)
 
 <details>
 
 <summary>Show code</summary>
 
 ``` r
-tabItem(
-  tabName = "genre",
-  fluidRow(
-    column(4,
-      pickerInput("trend_genre", "Select Genre(s)", ...),
-      dateRangeInput("trend_year_range", "Year Range", ...)
-    ),
-    column(8,
-      tabsetPanel(
-        tabPanel("Stacked Area Chart", plotlyOutput("trend_area_plot")),
-        tabPanel("Yearly Heatmap", plotlyOutput("trend_heatmap"))
-      )
+    tabItem(tabName = "genre",
+            fluidRow(
+              
+              column(width = 3,
+                     box(title = "Control Panel", status = "info", solidHeader = TRUE, width = 13,
+                         selectInput("mainGenre", "Main Genre",
+                                     choices = sort(unique(na.omit(all_nodes$genre))),
+                                     selected = "Oceanus Folk"
+                         ),
+                         sliderInput("yearRange", "Year Range:",
+                                     min = 1983, max = 2038, value = c(1990, 2025), sep = ""
+                         ),
+                         selectInput("nodeType", "Node Type:",
+                                     choices = c("Song (Track)" = "Song", "Album" = "Album"),
+                                     selected = "Song"
+                         ),
+                         radioButtons("hopDepth", "Influence Path Depth:",
+                                      choices = c("1-hop" = 1, "2-hop" = 2), selected = 1
+                         )
+                     )
+              ),
+              
+              column(width = 9,
+                     fluidRow(
+                       column(width = 8,
+                              box(title = "Timeline Trend", status = "primary", solidHeader = TRUE, width = 14,
+                                  plotlyOutput("trendPlot", height = "200px")
+                              ),
+                              box(title = "Genre Influence Network", status = "primary", solidHeader = TRUE, width = 14,
+                                  visNetworkOutput("genreNetwork", height = "250px")
+                              ),
+                              box(title = "Genre Influence Backflow", status = "primary", solidHeader = TRUE, width = 14,
+                                  sankeyNetworkOutput("genreSankey", height = "250px")
+                              )
+                       ),
+                       column(width = 4,
+                              box(title = "Detail Panel", status = "primary", solidHeader = TRUE, width = 12,
+                                  uiOutput("detailPanel")
+                              )
+                       )
+                     )
+              )
+            )
     )
-  )
-)
+    
+#### Sever Part ######
+graph_data <- fromJSON("data/MC1_graph.json")
+    nodes_df <- as.data.frame(graph_data$nodes)
+    edges_df <- as.data.frame(graph_data$links)
+    
+    all_nodes <- nodes_df
+    
+    # Reactive filtering: filter nodes and edges based on user input
+    filtered <- reactive({
+      
+      nodes <- all_nodes 
+      edges <- edges_df
+      
+      # Only keep nodes that are Song or Album and have genre
+      nodes <- nodes %>%
+        filter(`Node Type` %in% c("Song", "Album"), !is.na(genre))
+      
+      # Filter by year (assumes release_date is year string)
+      yr <- input$yearRange
+      if (!is.null(yr)) {
+        nodes <- nodes %>%
+          filter(!is.na(release_date) & as.numeric(release_date) >= yr[1] & 
+                   as.numeric(release_date) <= yr[2])
+      }
+      
+      # Filter by node type
+      if (!is.null(input$nodeType) && input$nodeType != "") {
+        nodes <- nodes %>% filter(`Node Type` == input$nodeType)
+      }
+      
+      # Join genre info
+      edges <- edges %>%
+        left_join(nodes %>% select(id, genre), by = c("source" = "id")) %>%
+        rename(source_genre = genre) %>%
+        left_join(nodes %>% select(id, genre), by = c("target" = "id")) %>%
+        rename(target_genre = genre)
+      
+      list(nodes = nodes, edges = edges)
+    })
+    
+    observe({
+      updateSelectInput(session, "mainGenre",
+                        choices = sort(unique(na.omit(nodes_df$genre))),
+                        selected = "Oceanus Folk")
+    })
+    
+    # Timeline trend plot: count genre nodes influenced by Oceanus Folk per year
+    output$trendPlot <- renderPlotly({
+      data <- filtered()$nodes
+      if (nrow(data) == 0) return(NULL)
+      # Extract year and count number of nodes per genre per year
+      df <- data %>% 
+        filter(!is.na(release_date)) %>%
+        mutate(Year = as.numeric(release_date)) %>%
+        group_by(Year, genre) %>%
+        summarize(Count = n(), .groups = 'drop')
+      if (nrow(df) == 0) return(NULL)
+      # Plot stacked area chart
+      p <- ggplot(df, aes(x = Year, y = Count, fill = genre)) +
+        geom_area(alpha = 0.6) +
+        labs(x = "Year", y = "Affected Count", fill = "Genre") +
+        theme_minimal()
+      ggplotly(p)
+    })
+    
+    # Genre influence network: centered on Oceanus Folk showing influence connections
+    output$genreNetwork <- renderVisNetwork({
+      data <- filtered()
+      nodes <- data$nodes
+      edges <- data$edges
+      if (nrow(nodes) == 0 || nrow(edges) == 0) return(NULL)
+      
+      main_genre <- input$mainGenre
+      
+      # 用 all_nodes 获取主 genre 节点 ID
+      main_ids <- all_nodes %>% filter(genre == main_genre) %>% pull(id)
+      if (length(main_ids) == 0) return(NULL)
+      
+      if (input$hopDepth == 1) {
+        edges_sub <- edges %>% filter(source %in% main_ids | target %in% main_ids)
+        nodes_sub <- nodes %>% filter(id %in% unique(c(edges_sub$source, edges_sub$target)))
+      } else {
+        one_hop <- edges %>% filter(source %in% main_ids | target %in% main_ids) %>%
+          pull(source, target) %>% unlist() %>% unique()
+        edges_sub <- edges %>% filter(source %in% c(main_ids, one_hop) | target %in% c(main_ids, one_hop))
+        nodes_sub <- nodes %>% filter(id %in% unique(c(edges_sub$source, edges_sub$target)))
+      }
+      
+      vis_nodes <- data.frame(id = nodes_sub$id, label = nodes_sub$name,
+                              value = 10, group = nodes_sub$genre)
+      vis_edges <- data.frame(from = edges_sub$source, to = edges_sub$target, arrows = "to")
+      
+      visNetwork(vis_nodes, vis_edges) %>%
+        visOptions(highlightNearest = list(enabled = TRUE, degree = 1),
+                   nodesIdSelection = TRUE)
+    })
+    
+    # Sankey diagram: backflow influence from other genres to Oceanus Folk
+    output$genreSankey <- renderSankeyNetwork({
+      data <- filtered()$edges
+      nodes <- filtered()$nodes
+      if (nrow(data) == 0 || nrow(nodes) == 0) return(NULL)
+      
+      main_genre <- input$mainGenre
+      
+      # Filter for edges where only one side is Oceanus Folk
+      sankey_links <- data %>%
+        filter(
+          !is.na(source_genre) & !is.na(target_genre),
+          (target_genre != main_genre & source_genre == main_genre) |
+            (source_genre != main_genre & target_genre == main_genre)
+        ) %>%
+        mutate(
+          FromGenre = ifelse(target_genre == main_genre, source_genre, target_genre),
+          ToGenre = main_genre
+        ) %>%
+        group_by(FromGenre, ToGenre) %>%
+        summarize(Value = n(), .groups = 'drop')
+    
+      
+      if (nrow(sankey_links) == 0) return(NULL)
+      
+      # Create nodes and links
+      sankey_nodes <- data.frame(name = unique(c(sankey_links$FromGenre, sankey_links$ToGenre)))
+      sankey_links <- sankey_links %>%
+        mutate(
+          source = match(FromGenre, sankey_nodes$name) - 1,
+          target = match(ToGenre, sankey_nodes$name) - 1
+        )
+      
+      sankeyNetwork(
+        Links = sankey_links,
+        Nodes = sankey_nodes,
+        Source = "source",
+        Target = "target",
+        Value = "Value",
+        NodeID = "name",
+        fontSize = 12,
+        nodeWidth = 30
+      )
+      
+    })
+    
+    # Detail panel: show node details upon selection
+    output$detailPanel <- renderUI({
+      # Assume visNetwork selection triggers input$genreNetwork_selected
+      sel_id <- input$genreNetwork_selected
+      if (is.null(sel_id)) {
+        return(tags$p("Click a node in the network or Sankey diagram to view details."))
+      }
+      # Look up selected node information
+      node_row <- nodes_df %>% filter(id == sel_id)
+      if (nrow(node_row) == 0) return(NULL)
+      # Sample field extraction (adjust to your schema)
+      name    <- node_row$name
+      works   <- ifelse(!is.null(node_row$representative_works), node_row$representative_works, "N/A")
+      activeY <- ifelse(!is.null(node_row$release_date), node_row$release_date, "Unknown")
+      # Check whether there is collaboration or similarity with Sailor Shift
+      sshift_id <- nodes_df$id[nodes_df$name == "Sailor Shift"]
+      related <- any(edges_df$Edge.Type %in% c("MemberOf", "InStyleOf", "LyricistOf", "LyricalReferenceTo") &
+                       ((edges_df$source == sel_id & edges_df$target == sshift_id) |
+                          (edges_df$source == sshift_id & edges_df$target == sel_id)))
+      tagList(
+        h4(paste0("Name: ", name)),
+        p(paste0("Representative Works: ", works)),
+        p(paste0("Active Year: ", activeY)),
+        p(paste0("Collaboration / Style Similarity with Sailor Shift: ", ifelse(related, "Yes", "No")))
+      )
+    })
 ```
 
 </details>
