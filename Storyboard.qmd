@@ -14,6 +14,147 @@ EchoScope™ is a visual analytics prototype designed to analyze artist influenc
 
 ------------------------------------------------------------------------
 
+## 🔧 Setup & Data Preparation
+
+> Before diving into the individual UI panels, here’s a quick summary of the R packages we load and the core data-preprocessing steps used throughout **EchoScope™**. Click **Show** to expand.
+
+<details>
+
+<summary>Show libraries & data-prep code</summary>
+
+``` r
+# ——— R Packages ———
+
+# ——— Shiny & UI ———
+library(shiny)
+library(shinydashboard)
+library(shinyWidgets)
+
+# ——— Data wrangling ———
+library(dplyr)
+library(tibble)
+library(jsonlite)
+library(lubridate)
+library(scales)
+
+# ——— Tables & plotting ———
+library(DT)
+library(ggplot2)
+library(plotly)
+
+# ——— Network analysis ———
+library(visNetwork)
+library(tidygraph)
+library(igraph)
+
+# ——— Influence Graph Data Prep ———
+
+# 1) Load graph JSON
+kg        <- fromJSON("data/MC1_graph.json")
+nodes_tbl <- as_tibble(kg$nodes)
+edges_tbl <- as_tibble(kg$links)
+
+# 2) Build index map
+id_map <- tibble(
+  id    = nodes_tbl$id,
+  index = seq_len(nrow(nodes_tbl))
+)
+
+# 3) Translate source/target → from/to
+edges_tbl_graph <- edges_tbl %>%
+  left_join(id_map, by = c("source" = "id")) %>% rename(from = index) %>%
+  left_join(id_map, by = c("target" = "id")) %>% rename(to   = index) %>%
+  filter(!is.na(from), !is.na(to))
+
+# 4) Create tidygraph object
+g_tbl <- tbl_graph(
+  nodes    = nodes_tbl %>% rename(node_name = name) %>% mutate(index = row_number()),
+  edges    = edges_tbl_graph,
+  directed = TRUE
+)
+
+# 5) Subnetwork extraction helper
+extract_subnetwork <- function(graph, node_name,
+                               distance = NULL,
+                               direction = c("all","in","out"),
+                               edge_types = NULL,
+                               node_types = NULL) {
+  direction <- match.arg(direction)
+  v_idx     <- which(V(graph)$name == node_name)
+  vids      <- ego(graph, v_idx, order = distance %||% length(graph),
+                   mode = direction)[[1]]
+  sg        <- induced_subgraph(graph, vids)
+  nd        <- as_data_frame(sg, what = "vertices")
+  ed        <- as_data_frame(sg, what = "edges")
+  if (!is.null(edge_types)) ed <- ed[ed$`Edge Type` %in% edge_types, ]
+  if (!is.null(node_types)) nd <- nd[nd$`Node Type` %in% node_types, ]
+  tidygraph::tbl_graph(nodes = nd, edges = ed, directed = is_directed(graph))
+}
+
+# 6) Talent scoring function
+prepare_talent_score_from_graph <- function(g_tbl) {
+  nodes <- as_tibble(g_tbl, active = "nodes")
+  edges <- as_tibble(g_tbl, active = "edges")
+
+  # Identify notable works
+  notable_work_ids <- nodes %>%
+    filter(`Node Type` %in% c("Song","Album"), notable == TRUE) %>%
+    pull(index)
+
+  # Identify contributing persons
+  person_edge_types <- c("PerformerOf","ComposerOf","ProducerOf","LyricistOf")
+  contributing_persons <- edges %>%
+    filter(to %in% notable_work_ids, `Edge Type` %in% person_edge_types) %>%
+    pull(from) %>% unique()
+
+  # Prepare person dataframe with recency & label
+  person_df <- nodes %>%
+    filter(`Node Type` == "Person") %>%
+    select(index, label = node_name, notoriety_date, genre) %>%
+    mutate(
+      notoriety_year   = as.numeric(substr(notoriety_date,1,4)),
+      notoriety_recency = pmax(0, 1 - (2025 - notoriety_year) / 20),
+      notable_label     = as.integer(index %in% contributing_persons)
+    )
+
+  # Add graph features
+  graph_feat <- g_tbl %>%
+    activate(nodes) %>%
+    mutate(degree = centrality_degree(), pagerank = centrality_pagerank())
+  feat <- as_tibble(graph_feat, active = "nodes") %>%
+    filter(`Node Type` == "Person") %>%
+    select(index, degree, pagerank)
+
+  # Merge features
+  features <- person_df %>%
+    left_join(feat, by = "index") %>%
+    mutate(across(c(degree,pagerank,notoriety_recency), ~replace_na(.,0)))
+
+  # Train logistic regression
+  if (nrow(features) < 10 || length(unique(features$notable_label)) < 2)
+    stop("Insufficient training data or no positive/negative samples.")
+  model <- glm(notable_label ~ degree + pagerank + notoriety_recency,
+               data = features, family = binomial)
+
+  # Predict and return scored data frame
+  features$predicted_prob <- predict(model, newdata = features, type = "response")
+  features %>%
+    arrange(desc(predicted_prob)) %>%
+    mutate(id = index) %>%
+    select(id, label, genre, degree, pagerank,
+           notoriety_year, notoriety_recency,
+           predicted_prob, notable_label)
+}
+
+# Example: generate talent_score_df
+talent_model_result <- prepare_talent_score_from_graph(g_tbl)
+talent_score_df      <- talent_model_result
+```
+
+</details>
+
+------------------------------------------------------------------------
+
 ## 🧭 User Flow Overview
 
 > This section illustrates the main propose user interaction journey through the EchoScope™ platform.
@@ -63,7 +204,9 @@ tabItem(
 
 </details>
 
-#### **🔗 Influence Analysis Panel**
+------------------------------------------------------------------------
+
+## **🔗 Influence Analysis Panel**
 
 **Section Purpose: Understanding Sailor Shift’s Artistic Influence Network**
 
@@ -80,181 +223,6 @@ This section presents a structured exploration of Sailor Shift’s artistic conn
 3.  **Her Influence on the Oceanus Folk Community**\
 
     Focus on how her influence has spread within the Oceanus Folk genre, including both direct and second-level indirect pathways.
-
-**Data preparation**
-
-```{r eval=FALSE }
-#| code-fold: true
-#| code-summary: "Data preparation Code "
-
-kg <- fromJSON("data/MC1_graph.json")
-
-nodes_tbl <- as_tibble(kg$nodes)
-edges_tbl <- as_tibble(kg$links) 
-
-id_map <- tibble(id = nodes_tbl$id,  #Retrieve the ID column of each row node
-                 index = seq_len(
-                   nrow(nodes_tbl)))  #Generate a line number sequence from 1 to n
-
-
-edges_tbl <- edges_tbl %>%
-  left_join(id_map, by = c("source" = "id")) %>%  # source id → from index
-  rename(from = index) %>% 
-  left_join(id_map, by = c("target" = "id")) %>%  # target id → to index
-  rename(to = index)
-
-edges_tbl <- edges_tbl %>%
-  filter(!is.na(from), !is.na(to))
-
-extract_subnetwork <- function(graph, node_name, 
-                               distance = NULL, 
-                               direction = c("all", "in", "out"),
-                               edge_types = NULL,
-                               node_types = NULL) {
-  direction <- match.arg(direction)
-  node <- which(V(graph)$name == node_name)
-  if (length(node) == 0) stop("Node name not found in graph.")
-  distance <- ifelse(is.null(distance), length(graph), distance)
-  
-  mode <- switch(direction,
-                 all = "all",
-                 `in` = "in",
-                 out = "out")
-  
-  igraph_subgraph <- induced_subgraph(graph, vids = ego(graph, node, order = distance, mode = mode)[[1]])
-  
-  nodes_df <- igraph::as_data_frame(igraph_subgraph, what = "vertices")
-  edges_df <- igraph::as_data_frame(igraph_subgraph, what = "edges")
-  
-  if (!is.null(edge_types)) {
-    edges_df <- edges_df %>% dplyr::filter(`Edge Type` %in% edge_types)
-  }
-  
-  if (!is.null(node_types)) {
-    nodes_df <- nodes_df %>% dplyr::filter(`Node Type` %in% node_types)
-  }
-  
-  used_node_ids <- unique(c(edges_df$from, edges_df$to))
-  nodes_df <- nodes_df %>% dplyr::filter(name %in% used_node_ids)
-  
-  tidygraph::tbl_graph(nodes = nodes_df, edges = edges_df, directed = igraph::is_directed(graph))
-}
-
-nodes_tbl <- nodes_tbl %>% mutate(index = row_number())
-
-sailor_index <- nodes_tbl %>%
-  filter(name == "Sailor Shift") %>%
-  pull(index)
-
-edges_from_sailor <- edges_tbl %>%
-  filter(from == sailor_index)
-
-first_layer_info <- edges_from_sailor %>%
-  inner_join(nodes_tbl, by = c("to" = "index")) %>%
-  filter(`Node Type` %in% c("Song", "Album", "MusicalGroup", "RecordLabel"))
-
-first_layer_targets <- first_layer_info$to
-
-influence_edges <- c("InStyleOf", "LyricalReferenceTo", "InterpolatesFrom", "CoverOf", "DirectlySamples")
-
-edges_2nd <- edges_tbl %>%
-  filter(from %in% first_layer_targets & `Edge Type` %in% influence_edges)
-
-influenced_works <- edges_2nd$to
-songs_with_outgoing <- unique(edges_2nd$from)
-
-person_edge_types <- c("PerformerOf", "ComposerOf", "LyricistOf", "ProducerOf")
-
-edges_people_to_2nd <- edges_tbl %>%
-  filter(
-    to %in% influenced_works,
-    `Edge Type` %in% person_edge_types
-  ) %>%
-  left_join(nodes_tbl %>% select(index, `Node Type`), by = c("from" = "index")) %>%
-  rename(`From Node Type` = `Node Type`) %>%
-  filter(`From Node Type` %in% c("Person", "RecordLabel")) %>%
-  left_join(nodes_tbl %>% select(index, `Node Type`, release_date), by = c("to" = "index")) %>%
-  rename(`To Node Type` = `Node Type`, release_date = release_date)
-
-first_layer_filtered <- first_layer_info %>%
-  filter(
-    (`Node Type` %in% c("Song", "Album") & to %in% songs_with_outgoing) |
-      (`Node Type` %in% c("MusicalGroup", "RecordLabel"))
-  )
-
-edges_from_sailor_filtered <- edges_from_sailor %>%
-  semi_join(first_layer_filtered, by = c("to" = "to"))
-
-all_edges <- bind_rows(
-  edges_from_sailor_filtered,
-  edges_2nd,
-  edges_people_to_2nd %>% rename(from = from, to = to)
-)
-
-node_ids <- unique(c(all_edges$from, all_edges$to))
-
-nodes_subgraph <- nodes_tbl %>%
-  filter(index %in% node_ids) %>%
-  mutate(
-    id = index,
-    label = name,
-    group = `Node Type`,
-    release_year = as.numeric(substr(release_date, 1, 4)),
-    written_year = as.numeric(substr(written_date, 1, 4)),
-    notoriety_year = as.numeric(substr(notoriety_date, 1, 4)),
-    
-    title = paste0(
-      "<b>", name, "</b><br>",
-      "Type: ", `Node Type`, "<br>",
-      "Release Year: ", release_year, "<br>",
-      "Written Year: ", written_year, "<br>",
-      "Notoriety Year: ", notoriety_year, "<br>",
-      "Genre: ", genre, "<br>",
-      "Single: ", single, "<br>",
-      "Notable: ", notable
-    )
-  ) %>%
-  select(id, label, group, release_year, notable, single, genre,
-         written_year, notoriety_year, title)
-
-
-edges_subgraph <- all_edges %>%
-
-  left_join(
-    nodes_tbl %>%
-      select(index, from_node_type = `Node Type`, from_name = name),
-    by = c("from" = "index")
-  ) %>%
-  
-  left_join(
-    nodes_tbl %>%
-      select(index, to_node_type = `Node Type`, to_name = name,
-             single, genre, release_date, notable, written_date, notoriety_date),
-    by = c("to" = "index")
-  ) %>%
-
-  mutate(
-    release_date = release_date.y
-  ) %>%
-  
-  transmute(
-    from,
-    to,
-    from_name,
-    from_node_type,
-    edge_type = `Edge Type`,
-    label = `Edge Type`,
-    to_name,
-    to_node_type,
-    single,
-    genre,
-    release_date,
-    notable,
-    written_date,
-    notoriety_date
-  )
-
-```
 
 📸 Screenshot of Influence Graph Panel
 
@@ -276,15 +244,15 @@ Objective : To empower users to efficiently explore and narrow down the influenc
 
 Planned Filter Components & Intended Functionality
 
-| Filter | User Interaction | Planned Purpose |
-|----|----|----|
-| Select Node Type | Multi-select (e.g., Album, Person, Song, RecordLabel, etc.) | Filters the network to show only selected entity types as nodes. |
-| Search Node Name | Dropdown or typeahead search (e.g., "Brooke Olson") | Focuses the network graph on the selected node, zooming in automatically. |
-| Select Edge Type | Multi-select (e.g., ComposerOf, Interpolates, etc.) | Filters edges by relationship type to limit visual noise and highlight key links. |
-| Is Notable? | Radio buttons (All / TRUE / FALSE) | Filters nodes by whether they are tagged as “notable” to emphasize known artists. |
-| Select Genre(s) | Multi-select (e.g., Alternative Rock, Avant-Garde Folk, etc.) | Enables genre-based filtering to tailor the view to specific music categories. |
-| Release Year Range | Range slider (1983–2038) + "Select All Years" button | Restricts nodes by their associated release year, helping with temporal filtering. |
-| Select Network Depth (from Sailor Shift) | Range slider (1–3) + "Select All network" button | Controls how many layers of influence (direct and indirect) are displayed. |
+| Filter                                   | User Interaction                                              | Planned Purpose                                                                    |
+|------------------------|------------------------|------------------------|
+| Select Node Type                         | Multi-select (e.g., Album, Person, Song, RecordLabel, etc.)   | Filters the network to show only selected entity types as nodes.                   |
+| Search Node Name                         | Dropdown or typeahead search (e.g., "Brooke Olson")           | Focuses the network graph on the selected node, zooming in automatically.          |
+| Select Edge Type                         | Multi-select (e.g., ComposerOf, Interpolates, etc.)           | Filters edges by relationship type to limit visual noise and highlight key links.  |
+| Is Notable?                              | Radio buttons (All / TRUE / FALSE)                            | Filters nodes by whether they are tagged as “notable” to emphasize known artists.  |
+| Select Genre(s)                          | Multi-select (e.g., Alternative Rock, Avant-Garde Folk, etc.) | Enables genre-based filtering to tailor the view to specific music categories.     |
+| Release Year Range                       | Range slider (1983–2038) + "Select All Years" button          | Restricts nodes by their associated release year, helping with temporal filtering. |
+| Select Network Depth (from Sailor Shift) | Range slider (1–3) + "Select All network" button              | Controls how many layers of influence (direct and indirect) are displayed.         |
 
 Interaction Design Considerations
 
@@ -302,14 +270,14 @@ To dynamically visualize Sailor Shift's influence network and provide quantitati
 
 Network Plot & Summary plan
 
-|  |  |  |
-|------------------|-----------------------|-------------------------------|
-| Tab | Content Type | Planned Interaction |
-| Influence Network | Plan to use`visNetwork` graph | Displays a dynamic node-link network showing direct and indirect influence. |
-|  |  | Hover reveals details; click highlights sub-network. |
-|  |  | Responds in real time to filters in the left panel (node type, genre, years, etc.). |
-| Summary Statistics | Plan to use `plotly` interactive bar chart | Shows count of edges by relationship type (e.g., ComposerOf, PerformerOf, etc.). |
-|  |  | Aggregated metrics update live as filters change. |
+|                    |                                            |                                                                                     |
+|-------------------|-----------------------|------------------------------|
+| Tab                | Content Type                               | Planned Interaction                                                                 |
+| Influence Network  | Plan to use`visNetwork` graph              | Displays a dynamic node-link network showing direct and indirect influence.         |
+|                    |                                            | Hover reveals details; click highlights sub-network.                                |
+|                    |                                            | Responds in real time to filters in the left panel (node type, genre, years, etc.). |
+| Summary Statistics | Plan to use `plotly` interactive bar chart | Shows count of edges by relationship type (e.g., ComposerOf, PerformerOf, etc.).    |
+|                    |                                            | Aggregated metrics update live as filters change.                                   |
 
 Propose outcome of the plots:
 
@@ -343,7 +311,7 @@ Here are the propose skeleton of the first part of the network influence UI desi
 
 <details>
 
-<summary>UI Design Planning Code </summary>
+<summary>UI Design Planning Code</summary>
 
 ``` r
 tabItem(
@@ -369,45 +337,9 @@ tabItem(
 
 </details>
 
-```{r eval=FALSE}
-#| code-fold: true
-#| code-summary: "Serve Design Planning Code "
-server <- function(input, output, session) {
-  
-  #1 Dynamic Filtering of Edges and Nodes
-  
-  - filtered_edges()         # Filter edges based on network depth and edge type
-  - filtered_nodes()         # Filter nodes based on valid IDs and input criteria
-  - observe()                # Dynamically update node_name picker choices
-  
-  #2 Network Graph Rendering and Interaction
-  
-  - output$directGraph       # Render visNetwork main graph
-  - observeEvent(input$node_name)       # Focus and highlight on selected node
-  - observeEvent(input$notable_filter)  # Highlight nodes based on "Notable" filter
-  
-  #3 Quick Interaction Buttons
-  
-  - observeEvent(input$release_range_btn)     # Reset release year slider to full range
-  - observeEvent(input$network_depth_btn)     # Set network depth to maximum (e.g., 3)
-  
-  #4 Data Table Output Section (DT::datatable)
-  
-  - output$directTable       # Display filtered edge data with node names, types, genres, and dates
-  
-  #5 Summary Statistics Visualization Output
-  
-  - output$groupEdgeBarPlot  # Render grouped bar chart (Node Type × Edge Type) using ggplotly
-  - output$barInfo           # Display tooltip text on bar click (plotly_click event)
+------------------------------------------------------------------------
 
-}
-
-
-```
-
-</details>
-
-**📈 Genre Diffusion Panel**
+## **📈 Genre Diffusion Panel**
 
 Purpose Track the evolution of music genres across time using visual summaries.
 
@@ -441,7 +373,11 @@ tabItem(
 
 </details>
 
-**🚀 Talent Radar Panel Purpose**
+------------------------------------------------------------------------
+
+## **🚀 Talent Radar Panel**
+
+**Purpose**
 
 Compare emerging artists based on graph features and scoring metrics to identify rising talent in a specific genre.
 
@@ -455,19 +391,57 @@ Key Features 🎯 Filter by Genre Users can focus on a specific musical style to
 
 -   📥 Export Results Allows users to download the scoring results as a CSV for further analysis or reporting.
 
-📸 Talent Radar Panel![](images/clipboard-1455348347.png)
+📸 Talent Radar Panel![](images/clipboard-1923199072.png)
 
-![](images/clipboard-3947322163.png)
+**Talent Radar – Score Explorer**
 
-![](images/clipboard-1260943389.png)
+The **Score Explorer** tab in the Talent Radar module is organized into two main sections:
+
+1.  **Artist Selection Controls (Left Pane)**
+    -   **Filter by Genre**\
+        Choose one or more music genres to limit which artists are considered.
+    -   **Select Artists to Compare**\
+        A searchable, multi-select dropdown that lists all artists active in the selected genre(s); up to five can be chosen for direct comparison.
+2.  **Customize Score Weights (Left Pane)**
+    -   **PageRank**\
+        \> Indicates an artist’s global influence within the full network.
+    -   **Degree Centrality**\
+        \> Counts the number of direct connections an artist has (collaborations, samples, covers, etc.).
+    -   **Style Similarity**\
+        \> Reflects how frequently an artist contributes to works in the selected genre(s).
+    -   **Notable Works Count**\
+        \> The normalized count of an artist’s works flagged as “notable” in the dataset.
+3.  **Visualization Output (Right Pane)**
+    -   **Radar Comparison** (default)\
+        Plots each selected artist on a four-axis radar chart (PageRank, Degree, StyleSim, NotableCount), scaled 0–1, making it easy to see which artist leads on which metric.
+    -   **Scoreboard**\
+        A sortable, searchable table of the raw normalized scores and overall weighted score for each selected artist.
+
+This layout enables interactive “what-if” analysis: dragging the weight sliders immediately updates the radar and table, so stakeholders can experiment with different business priorities (e.g., favoring global influence vs. genre specialization) to surface the most promising emerging talent.
+
+![](images/clipboard-736102350.png)
+
+Talent Radar – Scoreboard
+
+The **Scoreboard** tab complements the Radar Comparison by showing the underlying normalized metrics and overall weighted scores in a familiar table format. Key features:
+
+-   **Entries Selector**\
+    Control the number of rows shown per page (10, 25, 50, 100) for quick paging through results.
+-   **Search Box**\
+    Filter artists in real time by name or any score field.
+-   **Sortable Columns**\
+    Click any column header (PageRank, Degree, StyleSim, NotableCountNorm, Score) to sort ascending/descending.
+-   **Download CSV**\
+    Export the complete weighted scores dataset for offline analysis or reporting.
+
+![](images/clipboard-3714433466.png)
 
 <details>
 
 <summary>Show code</summary>
 
 ``` r
-Copy
-Edit
+
 tabItem(
   tabName = "talent",
   fluidRow(
@@ -492,7 +466,9 @@ tabItem(
 
 </details>
 
-**📊 Trend Dashboard Panel**
+------------------------------------------------------------------------
+
+#### **📊 Trend Dashboard Panel**
 
 Purpose Enable high-level insights export and macro filtering across all trends.
 
@@ -502,7 +478,7 @@ Purpose Enable high-level insights export and macro filtering across all trends.
 
 -   Export raw data as CSV
 
-📸 \[Insert screenshot of Trend Dashboard Panel\] ![Trend Dashboard Screenshot](images/trend_dashboard_placeholder.png){width="100%"}
+📸 Screenshot of Trend Dashboard Panel![](images/clipboard-2720527067.png)
 
 <details>
 
