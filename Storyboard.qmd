@@ -311,7 +311,7 @@ Here are the propose skeleton of the first part of the network influence UI desi
 
 <details>
 
-<summary>UI Design Planning Code</summary>
+<summary>UI Design + Server Planning Code</summary>
 
 ``` r
 tabItem(
@@ -331,8 +331,39 @@ tabItem(
     column(8, visNetworkOutput("directGraph", height = "700px",...))
     column(DTOutput("directTable", ...)
     
+   )
   )
 )
+
+server <- function(input, output, session) {
+  
+  #1 Dynamic Filtering of Edges and Nodes
+  
+  - filtered_edges()         # Filter edges based on network depth and edge type
+  - filtered_nodes()         # Filter nodes based on valid IDs and input criteria
+  - observe()                # Dynamically update node_name picker choices
+  
+  #2 Network Graph Rendering and Interaction
+  
+  - output$directGraph       # Render visNetwork main graph
+  - observeEvent(input$node_name)       # Focus and highlight on selected node
+  - observeEvent(input$notable_filter)  # Highlight nodes based on "Notable" filter
+  
+  #3 Quick Interaction Buttons
+  
+  - observeEvent(input$release_range_btn)     # Reset release year slider to full range
+  - observeEvent(input$network_depth_btn)     # Set network depth to maximum (e.g., 3)
+  
+  #4 Data Table Output Section (DT::datatable)
+  
+  - output$directTable       # Display filtered edge data with node names, types, genres, and dates
+  
+  #5 Summary Statistics Visualization Output
+  
+  - output$groupEdgeBarPlot  # Render grouped bar chart (Node Type × Edge Type) using ggplotly
+  - output$barInfo           # Display tooltip text on bar click (plotly_click event)
+
+}
 ```
 
 </details>
@@ -438,7 +469,7 @@ The **Scoreboard** tab complements the Radar Comparison by showing the underlyin
 
 <details>
 
-<summary>Show code</summary>
+<summary>UI Design + Server Planning Code</summary>
 
 ``` r
 
@@ -482,7 +513,7 @@ Purpose Enable high-level insights export and macro filtering across all trends.
 
 <details>
 
-<summary>Show code</summary>
+<summary>UI Design + Server Planning Code</summary>
 
 ``` r
 tabItem(
