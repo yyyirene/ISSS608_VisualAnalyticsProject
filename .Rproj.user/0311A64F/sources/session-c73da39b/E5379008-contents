@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "EchoScope™"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Influence Graph"
+        href: influence-graph.qmd
+      - text: "Genre Diffusion"
+        href: genre-diffusion.qmd
+      - text: "Talent Radar"
+        href: talent-radar.qmd
+      - text: "Storyboard"
+        href: Storyboard.qmd
+      - text: "Proposal"
+        href: proposal.qmd
+  page-footer:
+    center:
+      - text: "© 2025 EchoScope Project - Built with ❤️ using Shiny & Quarto"
+        href: index.qmd
+format:
+  html:
+    theme: materia
+    #css: styles.css
+    toc: true
+    page-layout: full
+    code-fold: true
+
+editor: visual
+
+
+
