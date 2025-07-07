@@ -3,7 +3,7 @@ title: "Project Meeting Minutes"
 author: "Group 16"
 ---
 
-## **Project Minutes of Meeting **
+## **Project Minutes of Meeting** 
 
 ### Project Meeting 1
 
@@ -13,23 +13,25 @@ author: "Group 16"
 
 **Agenda**
 
--    Discussion on project topic
+-   Discussion on project topic
 
 **Actions Taken**
 
--    Both members expressed interest in the music industry and confirmed Mini Case 1 as the project focus.
+-   Both members expressed interest in the music industry and confirmed Mini Case 1 as the project focus.
 
--    Discussed individual problem interpretations and agreed to share updates during the next meeting.
+-   Discussed individual problem interpretations and agreed to share updates during the next meeting.
 
--    Began discussing data preparation; despite instruction by Professor Kam, the team explored additional factors for more accurate results.
+-   Began discussing data preparation; despite instruction by Professor Kam, the team explored additional factors for more accurate results.
 
--    Brainstormed key research ideas:
+-   Brainstormed key research ideas:
 
-    -   Core message to convey
+```         
+-   Core message to convey
 
-    -   Intended methodologies and visualizations
+-   Intended methodologies and visualizations
+```
 
--    Agreed to prepare for task assignments in the next meeting.
+-   Agreed to prepare for task assignments in the next meeting.
 
 **Action Items**
 
@@ -54,21 +56,23 @@ author: "Group 16"
 
 **Discussion**
 
--    Initially proposed to split Mini Case questions between team members. Instead, decided all members should attempt all questions to encourage diverse perspectives.
+-   Initially proposed to split Mini Case questions between team members. Instead, decided all members should attempt all questions to encourage diverse perspectives.
 
--    Lucas proposed a website concept for a startup called a "Musical AI Agent" offering artist prediction services — "From Zero to Viral" — for record companies, MCNs, and investors. Idea was approved by Irene.
+-   Lucas proposed a website concept for a startup called a "Musical AI Agent" offering artist prediction services — "From Zero to Viral" — for record companies, MCNs, and investors. Idea was approved by Irene.
 
--    Services discussed:
+-   Services discussed:
 
-    -   Artist recommendation & discovery: maximizing success chances
+```         
+-   Artist recommendation & discovery: maximizing success chances
 
-    -   Personalized music dashboards
+-   Personalized music dashboards
 
-    -   Web-based song promotion and genre optimization
+-   Web-based song promotion and genre optimization
 
-    -   Relationship networks and time series analytics
+-   Relationship networks and time series analytics
+```
 
--    Noted: Hybrid GMM + Neural Network Models may be explored later, but not a priority.
+-   Noted: Hybrid GMM + Neural Network Models may be explored later, but not a priority.
 
 -   Agreed to delay web design tasks until core problems are solved.
 
@@ -98,6 +102,12 @@ author: "Group 16"
 -   Early Implementation Plans
 
 **Discussion**
+
+-   Lucas shared initial visualizations, but the output was cluttered and lacked clear direction.
+
+-   Irene suggested applying filters as per the instructor’s guidance and emphasized the need to first clarify key relationships — such as causality and direction — before proceeding with visuals.
+
+-   XR proposed using interactive charts to improve exploration, but I recommended focusing on clear, static visuals first before introducing advanced elements.
 
 -   Lucas proposed starting with logistic regression.
 
@@ -207,6 +217,14 @@ author: "Group 16"
 
 -   Website chosen as central project hub.
 
+    -   Irene advice extracted and processed influence network data (nodes and edges) focusing on artist relationships.
+
+    -   XR advice filtered and structured data for genre evolution and cluster transitions.
+
+    -   Lucas plan prepared the time-series dataset to enable modeling of artist trends over time.
+
+    -   All approved
+
 **Action Items**
 
 -   Lucas: Complete poster layout
@@ -235,6 +253,12 @@ author: "Group 16"
 **Discussion**
 
 -   Poster finalized with team visuals
+
+    -   Lucas proposed to only put the picture of our outcome with the general summary
+
+    -    Irene suggest to add some high level insights to the posters let the the audience more easier to read our result and have some take away.
+
+    -   XR agreed with both put the picture and the text on the poster for rich thinking.
 
 -   Bugs found on mobile — Irene fixed layout
 
@@ -267,6 +291,8 @@ author: "Group 16"
 
 **Agenda**
 
+-   Review Feedbacks from Professor Kam
+
 -   Final Rehearsal
 
 -   Submission Checklist
@@ -275,13 +301,22 @@ author: "Group 16"
 
 **Discussion**
 
+-   Network Graph Module:\
+    Improve filter logic and refine node/edge display for clearer, more meaningful visuals.
+
+-   Genre Diffusion Module:\
+    Align layout and style with other modules for visual consistency.
+
+-   Trend/Comparison Module:\
+    Revise sorting and highlight key differences to enhance comparative insights.
+
 -   Rehearsals completed and timings refined
 
 -   Final checklist completed:
 
     -   Netlify live link tested
 
-    -   GitHub README updated
+    -   GitHub updated
 
     -   Poster PDF uploaded
 
@@ -299,4 +334,4 @@ author: "Group 16"
 
 -   XR: Contribute to team reflection ,final testing and peer evaluation
 
--   All: Ready for presentation on July 5 and final submission on July 6
+-   All: Ready for improvement and presentation on July 5 and final submission on July 6

@@ -103,11 +103,11 @@ It is time for us to apply appropriate EDA methods to examine the data.
 In this code chunk below, ggplot2 functions are used the reveal the frequency distribution of *Edge Type* field of *edges_tbl*.
 
 ::: panel-tabset
-## Nodes
+## Edge
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Node Type Distribution"
+#| code-summary: "Edge Type Distribution"
 # Count edge types
 edge_types <- edges_tbl %>%
   count(`Edge Type`) %>%
@@ -149,33 +149,35 @@ ggplot(edge_types, aes(x = reorder(`Edge Type`, n), y = n, fill = `Edge Type`)) 
   )
 ```
 
-**Most nodes are of type `Person`**
+**"PerformerOf"** is the most frequent edge type
 
--   **Explanation**: Individuals (singers, composers, producers, etc.) form the majority of nodes.
+Explanation: The majority of edges connect a person to a song via a performance relationship.
 
--   **Insight**: The knowledge graph is **person-centric**, emphasizing individual contributions in the music ecosystem.
+Insight: This indicates that the relationship between performers and songs is a core structure in the knowledge graph, showing that the graph places a strong emphasis on who performed what.
 
-**`Song` is the second most frequent node type**
+"RecordedBy", "ComposerOf", and "ProducerOf" are also common
 
--   **Explanation**: Songs are heavily represented, as expected in a music-related knowledge graph.
+Explanation: Besides performers, the graph also documents many creators of the music, including composers, producers, and recording personnel.
 
--   **Insight**: This reflects the graph’s role in **mapping who is connected to which songs**, enabling analysis of performance, authorship, and influence.
+Insight: This suggests the graph goes beyond surface-level links, capturing multiple roles across the music creation pipeline.
 
-**Other node types (e.g., `RecordLabel`, `Album`, `MusicalGroup`) are far fewer**
+Edge types like "DirectlySamples", "CoverOf", "MemberOf", and "LyricalReferenceTo" are less frequent
 
--   **Explanation**: Entities like music labels, albums, and groups are present but much less prominent.
+Explanation: These edges represent more complex or less common musical relationships, such as:
 
--   **Insight**: These nodes play a **supporting role** in contextualizing the people-song relationships, potentially useful for advanced analyses (e.g., influence of labels, collaborations within groups).
+DirectlySamples: relates to copyright and musical inspiration
 
-**`MusicalGroup` nodes are very rare**
+CoverOf: shows the propagation of classic works through cover versions
 
--   **Insight**: Either the graph focuses more on individual artists rather than bands/groups, or group membership data may be under-represented.
+MemberOf: describes group or band membership
 
-## Edges
+Insight: Although less common, these edge types may hold higher value in studying musical influence and cultural transmission.
+
+## Node
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Edge Type Distribution"
+#| code-summary: "Node Type Distribution"
 # Step 1: Count each node type from your nodes_tbl
 node_types <- nodes_tbl %>%
   count(`Node Type`) %>%
@@ -222,6 +224,28 @@ ggplot(node_types, aes(x = reorder(`Node Type`, n), y = n, fill = `Node Type`)) 
     plot.margin = margin(10, 60, 30, 10)
   )
 ```
+
+**Most nodes are of type Person**
+
+Explanation: Individuals (singers, composers, producers, etc.) form the majority of nodes.
+
+Insight: The knowledge graph is person-centric, emphasizing individual contributions in the music ecosystem.
+
+Song is the second most frequent node type
+
+Explanation: Songs are heavily represented, as expected in a music-related knowledge graph.
+
+Insight: This reflects the graph’s role in mapping who is connected to which songs, enabling analysis of performance, authorship, and influence.
+
+Other node types (e.g., RecordLabel, Album, MusicalGroup) are far fewer
+
+Explanation: Entities like music labels, albums, and groups are present but much less prominent.
+
+Insight: These nodes play a supporting role in contextualizing the people-song relationships, potentially useful for advanced analyses (e.g., influence of labels, collaborations within groups).
+
+MusicalGroup nodes are very rare
+
+Insight: Either the graph focuses more on individual artists rather than bands/groups, or group membership data may be under-represented.
 :::
 
 ## Creating Knowledge Graph
@@ -584,7 +608,7 @@ edge_legend <- data.frame(
 
 ```
 
-### 2.Who has she collaborated with and directly or indirectly influenced? 
+### 2.Who has she collaborated with and directly or indirectly influenced?
 
 ### 3.How has she influenced collaborators of the broader Oceanus Folk community?
 
@@ -756,8 +780,7 @@ To evaluate the influence and potential of emerging artists, we developed a logi
 
 The preparation process consists of the following key steps:
 
-**Identifying Notable Contributors**
-We extracted all notable works (i.e., `Song` or `Album` nodes marked as `notable == TRUE`) and identified all persons (nodes of type `Person`) who contributed to these works through edges such as `PerformerOf`, `ComposerOf`, `ProducerOf`, or `LyricistOf`.
+**Identifying Notable Contributors** We extracted all notable works (i.e., `Song` or `Album` nodes marked as `notable == TRUE`) and identified all persons (nodes of type `Person`) who contributed to these works through edges such as `PerformerOf`, `ComposerOf`, `ProducerOf`, or `LyricistOf`.
 
 ```{r eval=FALSE}
 # Talent scoring function
@@ -775,18 +798,7 @@ prepare_talent_score_from_graph <- function(g_tbl) {
     filter(to %in% notable_work_ids,
            Edge Type %in% c("PerformerOf", "ComposerOf", "ProducerOf", "LyricistOf")) %>%
     pull(from) %>% unique()
-```
-
-#### **Constructing the Feature Set** 
-For each artist (person node), we collected the following features:
-
--   **Degree Centrality**: Measures the number of direct connections within the network.
-
--   **PageRank**: Captures the artist’s global influence across the network.
-
--   **Recency Score**: Derived from the artist’s `notoriety_date`, this measures how recently the artist gained attention (recency declines linearly over 20 years).
-
-```{r eval=FALSE}
+  
 # Prepare person dataframe with genre and recency
   person_df <- nodes %>%
     filter(Node Type == "Person") %>%
@@ -797,6 +809,16 @@ For each artist (person node), we collected the following features:
       notable_label = ifelse(index %in% contributing_persons, 1, 0)
     )
 ```
+
+#### **Constructing the Feature Set**
+
+For each artist (person node), we collected the following features:
+
+-   **Degree Centrality**: Measures the number of direct connections within the network.
+
+-   **PageRank**: Captures the artist’s global influence across the network.
+
+-   **Recency Score**: Derived from the artist’s `notoriety_date`, this measures how recently the artist gained attention (recency declines linearly over 20 years).
 
 ```{r eval=FALSE}
 # Add graph features
@@ -816,6 +838,8 @@ For each artist (person node), we collected the following features:
 
 Artists were labeled as “notable” (`notable_label = 1`) if they contributed to any notable work.
 
+**Model Training** A **logistic regression model** was trained using the three features—`degree`, `pagerank`, and `notoriety_recency`—to predict the likelihood that a given artist is a notable contributor.
+
 ```{r eval=FALSE}
 # Merge all features
   features <- person_df %>%
@@ -828,11 +852,7 @@ Artists were labeled as “notable” (`notable_label = 1`) if they contributed 
   }
 ```
 
-**Model Training**
-A **logistic regression model** was trained using the three features—`degree`, `pagerank`, and `notoriety_recency`—to predict the likelihood that a given artist is a notable contributor.
-
-**Scoring and Recommendation**
-The model outputs a predicted probability of notability for each artist. These scores are sorted and formatted with natural language descriptions, e.g.,*“🎧 Kimberly Snyder shows high influence and recent notoriety. Potential score: 78.5%”*
+**Scoring and Recommendation** The model outputs a predicted probability of notability for each artist. These scores are sorted and formatted with natural language descriptions, e.g.,*“🎧 Kimberly Snyder shows high influence and recent notoriety. Potential score: 78.5%”*
 
 ```{r eval=FALSE}
 model <- glm(notable_label ~ degree + pagerank + notoriety_recency,

@@ -1,4 +1,0 @@
-"0","edges_1st_filtered <- edges_1st_full_named %>%"
-"0","  filter(`Edge Type` %in% c(""LyricistOf"", ""PerformerOf"", ""MemberOf""))"
-"0",""
-"0","knitr::kable(edges_1st_filtered)"
