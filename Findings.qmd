@@ -150,7 +150,7 @@ The **Layered Genre-Artist Sankey Diagram** operationalizes influence as directi
 
 This multilayered flow analysis supports the thesis that Oceanus Folk acts both as a **source and recipient** of innovation—a genre that circulates influence bi-directionally.
 
-### Conclusion
+**Conclusion**
 
 The Genre Diffusion analysis presents Oceanus Folk as a dynamic, recursive, and outwardly radiating genre. From 1990 to 2025, it has transitioned from a **niche musical identity** into a **genre engine**—influencing artists across temporal phases and stylistic boundaries.
 
