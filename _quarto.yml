@@ -24,8 +24,10 @@ website:
             href:  https://ireneyyy333.shinyapps.io/ISSS608_VisualAnalyticsProject_Rshiny_G16/
           - text: "App User Guide"
             href:  ???
+    right:
+      - href: https://isss608-group16-echoscope-official.netlify.app/
+        text: Visit Official Website
  
-      
 
   page-footer:
     center:
