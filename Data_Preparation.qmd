@@ -41,7 +41,7 @@ The result shows a typical **knowledge graph (KG)** data structure, the detail e
 1.The overall structure is a list of 5 elements:
 
 | Element Name | Meaning |
-|------------------------------------|------------------------------------|
+|----|----|
 | directed: TRUE | Indicates the graph is **directed** (i.e., relationships have direction, like “someone performed a song”) |
 | multigraph: TRUE | Indicates this is a **multigraph**, meaning multiple edges (relationships) can exist between the same pair of nodes (e.g., a person can be both “composer” and “performer”) |
 | graph | Contains default attributes for nodes and edges (currently empty named lists) |
@@ -70,7 +70,7 @@ There are **17,412 nodes**, with the following variables:
 There are **37,857 edges**, with the following columns:
 
 | Column Name | Meaning / Example |
-|------------------------------------|------------------------------------|
+|----|----|
 | Edge Type | Type of relationship (e.g., `"PerformerOf"`, `"ComposerOf"`, `"InterpolateFrom"`) |
 | source | ID of the source node |
 | target | ID of the target node |
@@ -912,7 +912,7 @@ For each artist (person node), we collected the following features:
 
 Artists were labeled as “notable” (`notable_label = 1`) if they contributed to any notable work.
 
-### Model Training 
+### Model Training
 
 A **logistic regression model** was trained using the three features—`degree`, `pagerank`, and `notoriety_recency`—to predict the likelihood that a given artist is a notable contributor.
 
@@ -928,7 +928,7 @@ A **logistic regression model** was trained using the three features—`degree`,
   }
 ```
 
-### Scoring and Recommendation 
+### Scoring and Recommendation
 
 The model outputs a predicted probability of notability for each artist. These scores are sorted and formatted with natural language descriptions, e.g.,*“🎧 Kimberly Snyder shows high influence and recent notoriety. Potential score: 78.5%”*
 
