@@ -774,13 +774,87 @@ edges_final <- bind_rows(
 )
 ```
 
+## Data Preparation for Genre Diffusion
+
+This `reactive()` function is designed to process musical influence data for downstream visualization tasks such as **genre-level chord diagrams**. The key processing steps are summarized below:
+
+### Filter Valid Nodes
+
+Only nodes of type `"Song"` or `"Album"` with non-missing `genre` values are retained:
+
+```{r eval=FALSE}
+nodes <- nodes_df %>%
+  filter(`Node Type` %in% c("Song", "Album"), !is.na(genre))
+
+```
+
+### Optional Year Filter
+
+If a year range input (`input$yearRange`) is specified, the nodes are further filtered to only include those with a `release_date` falling within the selected range:
+
+```{r eval=FALSE}
+if (!is.null(input$yearRange)) {
+  nodes <- nodes %>%
+    filter(
+      !is.na(release_date),
+      as.numeric(release_date) >= input$yearRange[1],
+      as.numeric(release_date) <= input$yearRange[2]
+    )
+}
+```
+
+### Join Genre Info to Edges
+
+Genres from source and target nodes are joined to the edge data so that genre-genre influence can be analyzed:
+
+```{r eval=FALSE}
+edges <- edges_df %>%
+  left_join(nodes %>% select(id, source_genre = genre), by = c("source" = "id")) %>%
+  left_join(nodes %>% select(id, target_genre = genre), by = c("target" = "id"))
+
+```
+
+### Create Genre-Genre Frequency Table
+
+A summarized frequency table of genre-to-genre interactions is generated for use in a chord diagram. It counts how often genres influence each other:
+
+```{r eval=FALSE}
+chord_df <- edges %>%
+  filter(!is.na(source_genre), !is.na(target_genre)) %>%
+  group_by(source_genre, target_genre) %>%
+  summarize(value = n(), .groups = "drop")
+
+```
+
+### Convert to Matrix Format
+
+The grouped data is reshaped into a matrix format using `reshape2::acast`, where rows and columns represent source and target genres, respectively, and cells indicate interaction counts:
+
+```{r eval=FALSE}
+genre_matrix <- reshape2::acast(chord_df, source_genre ~ target_genre, value.var = "value", fill = 0)
+```
+
+### Return Results as a List
+
+Finally, a list containing the genre matrix, filtered nodes, and enriched edges is returned for use in visualizations (e.g., chord diagrams):
+
+```{r eval=FALSE}
+list(
+  genre_matrix = genre_matrix,
+  nodes = nodes,
+  edges = edges
+)
+```
+
 ## Data Preparation for Comparison Analysis
 
 To evaluate the influence and potential of emerging artists, we developed a logistic regression–based **talent scoring function** that leverages both network centrality and metadata features.
 
 The preparation process consists of the following key steps:
 
-**Identifying Notable Contributors** We extracted all notable works (i.e., `Song` or `Album` nodes marked as `notable == TRUE`) and identified all persons (nodes of type `Person`) who contributed to these works through edges such as `PerformerOf`, `ComposerOf`, `ProducerOf`, or `LyricistOf`.
+### Identifying Notable Contributors
+
+We extracted all notable works (i.e., `Song` or `Album` nodes marked as `notable == TRUE`) and identified all persons (nodes of type `Person`) who contributed to these works through edges such as `PerformerOf`, `ComposerOf`, `ProducerOf`, or `LyricistOf`.
 
 ```{r eval=FALSE}
 # Talent scoring function
@@ -810,7 +884,7 @@ prepare_talent_score_from_graph <- function(g_tbl) {
     )
 ```
 
-#### **Constructing the Feature Set**
+### Constructing the Feature Set
 
 For each artist (person node), we collected the following features:
 
@@ -834,11 +908,13 @@ For each artist (person node), we collected the following features:
     select(index, degree, pagerank)
 ```
 
-#### **Binary Label for Notability**
+### Binary Label for Notability
 
 Artists were labeled as “notable” (`notable_label = 1`) if they contributed to any notable work.
 
-**Model Training** A **logistic regression model** was trained using the three features—`degree`, `pagerank`, and `notoriety_recency`—to predict the likelihood that a given artist is a notable contributor.
+### Model Training 
+
+A **logistic regression model** was trained using the three features—`degree`, `pagerank`, and `notoriety_recency`—to predict the likelihood that a given artist is a notable contributor.
 
 ```{r eval=FALSE}
 # Merge all features
@@ -852,7 +928,9 @@ Artists were labeled as “notable” (`notable_label = 1`) if they contributed 
   }
 ```
 
-**Scoring and Recommendation** The model outputs a predicted probability of notability for each artist. These scores are sorted and formatted with natural language descriptions, e.g.,*“🎧 Kimberly Snyder shows high influence and recent notoriety. Potential score: 78.5%”*
+### Scoring and Recommendation 
+
+The model outputs a predicted probability of notability for each artist. These scores are sorted and formatted with natural language descriptions, e.g.,*“🎧 Kimberly Snyder shows high influence and recent notoriety. Potential score: 78.5%”*
 
 ```{r eval=FALSE}
 model <- glm(notable_label ~ degree + pagerank + notoriety_recency,
